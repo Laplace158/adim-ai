@@ -20,7 +20,7 @@ export class GeminiAIProvider implements AIProvider {
   private getApiKey(): string {
     const customKey = localStorage.getItem('adimai_gemini_api_key');
     if (customKey && customKey.trim().length > 10) return customKey.trim();
-    return import.meta.env.VITE_GEMINI_API_KEY || '';
+    return '';
   }
 
   // Working models prioritized by live availability
