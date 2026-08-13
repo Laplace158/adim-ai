@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #FBF9F6;
+    --card-bg: #ffffff;
+    --border-subtle: #EFE8E1;
+    --text-primary: #1C1917;
+    --text-secondary: #78716C;
+    --brand-terracotta: #C85A32;
+    --brand-hover: #B04A26;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Warm Handcrafted Artisan Micro-Components */
+.card-clean {
+  background-color: #ffffff;
+  border: 1px solid #EFE8E1;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(28, 25, 23, 0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-clean:hover {
+  border-color: #D6C7B8;
+  box-shadow: 0 6px 16px -2px rgba(200, 90, 50, 0.08);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: #C85A32;
+  color: #ffffff;
+  min-height: 44px;
+  box-shadow: 0 2px 6px rgba(200, 90, 50, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: #B04A26;
+  box-shadow: 0 4px 12px rgba(200, 90, 50, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  color: #292524;
+  border: 1px solid #EFE8E1;
+  min-height: 44px;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #F8F5F1;
+  border-color: #D6C7B8;
+}
