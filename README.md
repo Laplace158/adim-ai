@@ -1,0 +1,80 @@
+<div align="center">
+  <img src="public/logo.png" alt="AdımAI Logo" width="90" />
+  <h1>AdımAI — Kişisel AI Hedef & İlerleme Rehberi</h1>
+  <p><b>Herhangi bir hedefi 1. Hafta eylem planına dönüştürün.</b></p>
+
+  <p>
+    <img src="https://img.shields.io/badge/React-18-blue?logo=react" alt="React 18" />
+    <img src="https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Gemini_AI-3.6_Flash-orange?logo=google" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite" alt="Vite" />
+  </p>
+</div>
+
+---
+
+## 📌 Proje Hakkında (About The Project)
+
+**AdımAI**, kullanıcıların doğal dille ifade ettiği ucu açık veya büyük hedefleri (dil öğrenimi, yazılım projesi, sınav hazırlığı veya özel hobiler) matematiksel süre motoruyla **günlük mikro odak adımlarına** dönüştüren **yapay zeka destekli bir hedef ve alışkanlık koçudur**.
+
+Klasik yapılacaklar listelerinden veya sohbet pencerelerinde unutulan cevapsız sohbetlerden farklı olarak AdımAI; canlı panoda yaşayan, zorlandığınızda adımları basitleştiren adaptif bir öğrenme rotası sunar.
+
+---
+
+## ✨ Öne Çıkan Özellikler (Key Features)
+
+- 🎯 **Akıllı Hedef Bölümleme & Analiz**: Yapay zeka hedefinizi inceler, gerçekçi minimum/maksimum gün süresini ve ilk 7 günlük eylem rotasını çıkarır.
+- ⏱️ **Canlı Odak Odağı & Pomodoro Zamanlayıcı (`FocusTimerWidget`)**: Görev esnasında dikkati toplamayı sağlayan 25 dakikalık canlı sayaç ve entegre **Ambient Odak Sesi (Yağmur/Doğa Efekti)**.
+- 📚 **Konuya %100 Özel Doğrulanmış Kaynaklar**:
+  - 🎸 *Gitar/Müzik:* Ultimate Guitar, Songsterr, JustinGuitar.
+  - 🇯🇵 *Japonca/Diller:* Tofugu, NHK World Japanese, Duolingo, Anki Web.
+  - 💻 *Yazılım:* MDN Web Docs, W3Schools, Patika.dev, FreeCodeCamp.
+  - 📚 *Sınav:* EBA, Khan Academy TR, ÖSYM Çıkmış Soru Analizleri.
+- 🧠 **Hedefe Özel Tanı & Seviye Testi**: Kullanıcının seçtiği konudaki hazır bulunuşluğunu ve seviyesini ölçen hedefe özel 4 dinamik soru.
+- 🔄 **Adaptif Check-in & Tekrar Sistemi**: *"Zorlandım"*, *"Vaktim Yoktu"* veya *"Çok Kolaydı"* seçimlerine göre görevi yeniden şekillendiren dinamik algoritma.
+- 🎓 **Somut Kanıt & CV Çıktısı**: Süreç sonunda GitHub README şablonu, kelime ustalık raporu ve özgeçmişe eklenebilecek somut çıktılar.
+
+---
+
+## 🛠️ Teknolojiler (Tech Stack)
+
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS (Handcrafted Terracotta & Indigo Tema, Google Playfair Display & Plus Jakarta Sans Fontları)
+- **AI Integration**: Google Gemini 3.6 Flash API (`v1beta` JSON Schema Generation)
+- **Icons & UI**: Lucide React
+- **Storage**: LocalStorage Storage Engine & Supabase Ready Architecture
+
+---
+
+## 🚀 Hızlı Başlangıç (Quick Start)
+
+### 1. Depoyu Klonlayın:
+```bash
+git clone https://github.com/Laplace158/adim-ai.git
+cd adim-ai
+```
+
+### 2. Bağımlılıkları Yükleyin:
+```bash
+npm install
+```
+
+### 3. Çevre Değişkenlerini Ayarlayın (İsteğe Bağlı):
+`.env.example` dosyasını kopyalayarak `.env` oluşturun:
+```env
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
+*(Not: API Key girilmezse uygulama akıllı yedek simülasyon modunda çalışmaya devam eder.)*
+
+### 4. Geliştirici Sunucusunu Başlatın:
+```bash
+npm run dev
+```
+
+---
+
+## 👤 Geliştirici (Author)
+
+**Erkan A. (Laplace158)**  
+- GitHub: [@Laplace158](https://github.com/Laplace158)
