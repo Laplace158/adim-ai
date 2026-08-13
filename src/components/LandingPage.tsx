@@ -180,12 +180,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
         </div>
       </section>
 
-      {/* Testimonials Carousel (FocusAI Inspired - Image 4) */}
+      {/* Demo Use Case Scenarios (Cookin'Brain Feedback Compliant) */}
       <section className="max-w-4xl mx-auto px-4 text-center space-y-6">
         <div className="space-y-2">
-          <Badge variant="indigo" className="font-semibold">KULLANICI DENEYİMLERİ</Badge>
+          <Badge variant="indigo" className="font-semibold">DEMO SENARYOLARI & KULLANIM DURUMLARI</Badge>
           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-            İnsanlar aslında <span className="font-serif italic font-normal text-[#C85A32]">işleri bitirmek ister.</span>
+            Gerçekçi Hedef Senaryoları & <span className="font-serif italic font-normal text-[#C85A32]">Kullanım Örnekleri</span>
           </h2>
         </div>
 
@@ -197,7 +197,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
           </p>
 
           <div className="pt-2 border-t border-slate-800">
-            <span className="font-bold text-white text-sm block">{testimonials[activeTestimonialIdx].author}</span>
+            <span className="font-bold text-white text-sm block">{testimonials[activeTestimonialIdx].author} (Simülasyon Senaryosu)</span>
             <span className="text-xs text-slate-400">{testimonials[activeTestimonialIdx].role}</span>
           </div>
 

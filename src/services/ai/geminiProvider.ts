@@ -91,47 +91,65 @@ JSON ŞEMASI:
 }`;
   }
 
-  async analyzeGoal(input: GoalInput): Promise<GoalAnalysisResult> {
-    const apiKey = this.getApiKey();
+  private async executeGeminiCall(model: string, prompt: string, apiKey: string): Promise<any> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-    if (!apiKey || apiKey.length < 5) {
-      console.warn('[GeminiAI] API Key tanımlı değil, Akıllı Mock Provider kullanılıyor.');
-      lastGenerationSource = 'mock';
-      return mockAIProvider.analyzeGoal(input);
+    try {
+      // 1. Try Vercel Serverless Proxy (/api/gemini) first to protect API key
+      const proxyRes = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({ model, prompt })
+      });
+
+      if (proxyRes.ok) {
+        clearTimeout(timeoutId);
+        return await proxyRes.json();
+      }
+    } catch {
+      // Proxy not available (e.g. local dev without vercel cli), continue to direct fetch
     }
 
+    // 2. Direct Gemini API call if custom API Key or client key is provided
+    if (!apiKey || apiKey.length < 5) {
+      clearTimeout(timeoutId);
+      throw new Error('No API Key');
+    }
+
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          temperature: 0.4,
+          maxOutputTokens: 4096
+        }
+      })
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(`HTTP ${response.status}: ${errText.substring(0, 100)}`);
+    }
+
+    return await response.json();
+  }
+
+  async analyzeGoal(input: GoalInput): Promise<GoalAnalysisResult> {
+    const apiKey = this.getApiKey();
     const prompt = this.buildGoalPrompt(input);
 
     for (const model of this.availableModels) {
       try {
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
         console.log(`[GeminiAI] ${model} modeli çağrılıyor...`);
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          signal: controller.signal,
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              responseMimeType: "application/json",
-              temperature: 0.4,
-              maxOutputTokens: 4096
-            }
-          })
-        });
-        clearTimeout(timeoutId);
-
-        if (!response.ok) {
-          const errText = await response.text();
-          console.warn(`[GeminiAI] ${model} HTTP ${response.status}: ${errText.substring(0, 150)}`);
-          continue;
-        }
-
-        const data = await response.json();
+        const data = await this.executeGeminiCall(model, prompt, apiKey);
         const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
         if (!rawText) continue;
@@ -239,31 +257,19 @@ SADECE ŞU JSON FORMATINDA DÖNDÜR:
 
     for (const model of this.availableModels) {
       try {
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: "application/json", temperature: 0.3 }
-          })
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (rawText) {
-            let jsonText = rawText.trim().replace(/^```json\s*/, '').replace(/\s*```$/, '');
-            const parsed = JSON.parse(jsonText);
-            if (parsed.questions && Array.isArray(parsed.questions)) {
-              return {
-                id: `diag-${Date.now()}`,
-                goalId,
-                category,
-                questions: parsed.questions,
-                createdAt: new Date().toISOString()
-              };
-            }
+        const data = await this.executeGeminiCall(model, prompt, apiKey);
+        const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (rawText) {
+          let jsonText = rawText.trim().replace(/^```json\s*/, '').replace(/\s*```$/, '');
+          const parsed = JSON.parse(jsonText);
+          if (parsed.questions && Array.isArray(parsed.questions)) {
+            return {
+              id: `diag-${Date.now()}`,
+              goalId,
+              category,
+              questions: parsed.questions,
+              createdAt: new Date().toISOString()
+            };
           }
         }
       } catch (err) {

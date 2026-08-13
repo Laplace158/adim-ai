@@ -4,6 +4,12 @@
   <p><b>Herhangi bir hedefi 1. Hafta eylem planına dönüştürün.</b></p>
 
   <p>
+    <a href="https://adim-ai.vercel.app/" target="_blank">
+      <img src="https://img.shields.io/badge/🚀_Canlı_Demo-adim--ai.vercel.app-emerald?style=for-the-badge" alt="Live Demo" />
+    </a>
+  </p>
+
+  <p>
     <img src="https://img.shields.io/badge/React-18-blue?logo=react" alt="React 18" />
     <img src="https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css" alt="Tailwind CSS" />
@@ -18,7 +24,24 @@
 
 **AdımAI**, kullanıcıların doğal dille ifade ettiği ucu açık veya büyük hedefleri (dil öğrenimi, yazılım projesi, sınav hazırlığı veya özel hobiler) matematiksel süre motoruyla **günlük mikro odak adımlarına** dönüştüren **yapay zeka destekli bir hedef ve alışkanlık koçudur**.
 
-Klasik yapılacaklar listelerinden veya sohbet pencerelerinde unutulan cevapsız sohbetlerden farklı olarak AdımAI; canlı panoda yaşayan, zorlandığınızda adımları basitleştiren adaptif bir öğrenme rotası sunar.
+🌐 **Canlı Demo Adresi**: [https://adim-ai.vercel.app/](https://adim-ai.vercel.app/)
+
+---
+
+## 📐 Sistem Mimarısı (Architecture Diagram)
+
+```mermaid
+graph TD
+    A[Client Browser / PWA - React 18 + Vite] -->|POST /api/gemini| B[Vercel Serverless Proxy Endpoint]
+    B -->|Secret Protected API Call| C[Google Gemini 3.6 Flash AI Engine]
+    C -->|JSON Schema Response| B
+    B -->|Structured Goal & Tasks| A
+    A -->|State & Progress Sync| D[LocalStorage Engine]
+    A -.->|Prepared Integration Schema| E[(Supabase Cloud Database)]
+```
+
+### 🔒 Güvenlik & Proxy Mimarisi:
+API anahtarları istemci tarafında (frontend bundle) asla açıkta bırakılmaz. Tüm AI istekleri Vercel Serverless proxy katmanı (`/api/gemini`) üzerinden güvenli bir biçimde iletilir.
 
 ---
 
@@ -37,13 +60,27 @@ Klasik yapılacaklar listelerinden veya sohbet pencerelerinde unutulan cevapsız
 
 ---
 
+## ⚠️ Bilinen Sınırlamalar & MVP Kapsamı (MVP Limitations)
+
+- **Veri Depolama**: Bu ilk sürüm (MVP), kullanıcı deneyimini kesintisiz kılmak amacıyla **LocalStorage** tabanlı çalışmaktadır. Klasör içerisindeki `supabase/schema.sql` ve `src/services/supabaseClient.ts` dosyaları veritabanı entegrasyonu için hazır mimari olarak hazırlanmıştır.
+- **AI Kota Yönetimi**: Ücretsiz Gemini API katmanında kota aşımı yaşandığında sistem otomatik olarak akıllı mock provider moduna geçer.
+- **Demo Senaryoları**: Ana sayfadaki kullanım senaryoları simülasyon ve örnek modellemelerden oluşmaktadır.
+
+---
+
+## 💼 Özgeçmiş / CV Tanım İfadesi (Resume Bullet Point)
+
+> **Built and deployed AdımAI, an adaptive AI goal-planning PWA with Gemini integration, mathematical duration estimation, curated resources, Pomodoro focus mode and adaptive check-ins using React, TypeScript and Vite.**
+
+---
+
 ## 🛠️ Teknolojiler (Tech Stack)
 
 - **Frontend**: React 18, TypeScript, Vite
 - **Styling**: Tailwind CSS (Handcrafted Terracotta & Indigo Tema, Google Playfair Display & Plus Jakarta Sans Fontları)
-- **AI Integration**: Google Gemini 3.6 Flash API (`v1beta` JSON Schema Generation)
+- **Backend / Proxy**: Vercel Serverless Functions (`/api/gemini.ts`)
+- **AI Engine**: Google Gemini 3.6 Flash API (`v1beta` JSON Schema Generation)
 - **Icons & UI**: Lucide React
-- **Storage**: LocalStorage Storage Engine & Supabase Ready Architecture
 
 ---
 
@@ -60,12 +97,11 @@ cd adim-ai
 npm install
 ```
 
-### 3. Çevre Değişkenlerini Ayarlayın (İsteğe Bağlı):
-`.env.example` dosyasını kopyalayarak `.env` oluşturun:
+### 3. Çevre Değişkenlerini Ayarlayın:
+`.env.example` dosyasını `.env` olarak kopyalayın:
 ```env
 VITE_GEMINI_API_KEY=your_gemini_api_key_here
 ```
-*(Not: API Key girilmezse uygulama akıllı yedek simülasyon modunda çalışmaya devam eder.)*
 
 ### 4. Geliştirici Sunucusunu Başlatın:
 ```bash
@@ -76,5 +112,6 @@ npm run dev
 
 ## 👤 Geliştirici (Author)
 
-**Erkan E.F. (Laplace158)**  
-- GitHub: [@Laplace158](https://github.com/Laplace158)
+**Erkan A. (Laplace158)**  
+- GitHub: [@Laplace158](https://github.com/Laplace158)  
+- Live Application: [adim-ai.vercel.app](https://adim-ai.vercel.app/)
