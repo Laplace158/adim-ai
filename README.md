@@ -97,10 +97,10 @@ cd adim-ai
 npm install
 ```
 
-### 3. Çevre Değişkenlerini Ayarlayın:
+### 3. Çevre Değişkenlerini Ayarlayın (Vercel Server Environment):
 `.env.example` dosyasını `.env` olarak kopyalayın:
 ```env
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 ### 4. Geliştirici Sunucusunu Başlatın:

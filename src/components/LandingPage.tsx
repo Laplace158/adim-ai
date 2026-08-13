@@ -15,7 +15,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
   const testimonials = [
     {
       quote: "Yıllar süren yanlış başlangıçlardan sonra nihayet React ve Tailwind'de ilk projemi tamamladım. Belirsiz bir 'React öğren' listesi yerine her gün ne yapacağımı söyleyen tek bir eyleme sahip olmak harikaydı.",
-      author: "Erkan A.",
+      author: "Erkan E.F.",
       role: "Kendi Kendini Yetiştirmiş Geliştirici",
       badge: "Yazılım Projesi • 42 Gün"
     },
