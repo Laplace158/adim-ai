@@ -76,5 +76,5 @@ npm run dev
 
 ## 👤 Geliştirici (Author)
 
-**Erkan A. (Laplace158)**  
+**Erkan E.F. (Laplace158)**  
 - GitHub: [@Laplace158](https://github.com/Laplace158)
