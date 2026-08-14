@@ -94,57 +94,69 @@ JSON ŞEMASI:
   }
 
   private async executeGeminiCall(model: string, prompt: string, apiKey: string): Promise<any> {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
-
+    // 1. Try Vercel Serverless Proxy (/api/gemini) first — it uses server-side API key
     try {
-      // 1. Try Vercel Serverless Proxy (/api/gemini) first to protect API key
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
       const proxyRes = await fetch('/api/gemini', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         signal: controller.signal,
         body: JSON.stringify({ model, prompt })
       });
+      clearTimeout(timeoutId);
 
       if (proxyRes.ok) {
         const proxyData = await proxyRes.json();
         if (proxyData && proxyData.candidates && proxyData.candidates.length > 0) {
-          clearTimeout(timeoutId);
+          console.log(`[GeminiAI] ✅ Proxy üzerinden canlı yanıt alındı (${model})`);
           return proxyData;
         }
+      } else {
+        const errText = await proxyRes.text().catch(() => '');
+        console.warn(`[GeminiAI] Proxy yanıt hatası ${proxyRes.status}: ${errText.substring(0, 100)}`);
       }
-    } catch {
-      // Proxy failed or 500 error, continue directly to direct client fetch
+    } catch (proxyErr) {
+      console.warn('[GeminiAI] Proxy çağrısı başarısız, doğrudan Google API deneniyor...', proxyErr);
     }
 
-    // 2. Direct Gemini API call if custom API Key or client key is provided
-    if (!apiKey || apiKey.length < 5) {
-      clearTimeout(timeoutId);
-      throw new Error('No API Key');
+    // 2. Direct client-side Gemini API call as fallback (API key decoded at runtime)
+    if (!apiKey || apiKey.length < 10) {
+      throw new Error('Geçerli bir Gemini API Anahtarı bulunamadı.');
     }
 
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      signal: controller.signal,
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseMimeType: "application/json",
-          temperature: 0.4,
-          maxOutputTokens: 4096
-        }
-      })
-    });
-    clearTimeout(timeoutId);
+    const controller2 = new AbortController();
+    const timeoutId2 = setTimeout(() => controller2.abort(), 30000);
 
-    if (!response.ok) {
-      const errText = await response.text();
-      throw new Error(`HTTP ${response.status}: ${errText.substring(0, 100)}`);
+    try {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller2.signal,
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: {
+            responseMimeType: "application/json",
+            temperature: 0.4,
+            maxOutputTokens: 4096
+          }
+        })
+      });
+      clearTimeout(timeoutId2);
+
+      if (!response.ok) {
+        const errText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${errText.substring(0, 200)}`);
+      }
+
+      const data = await response.json();
+      console.log(`[GeminiAI] ✅ Doğrudan Google API üzerinden yanıt alındı (${model})`);
+      return data;
+    } catch (err) {
+      clearTimeout(timeoutId2);
+      throw err;
     }
-
-    return await response.json();
   }
 
   async analyzeGoal(input: GoalInput): Promise<GoalAnalysisResult> {
