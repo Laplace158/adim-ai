@@ -426,7 +426,7 @@ export class MockAIProvider implements AIProvider {
           status: 'pending'
         }
       ];
-    } else if (input.category === 'coding_project') {
+    } else if (input.category === 'coding_project' && (lowerTitle.includes('react') || lowerTitle.includes('vite') || lowerTitle.includes('web') || lowerTitle.includes('frontend') || lowerTitle.includes('html') || lowerTitle.includes('css') || lowerTitle.includes('javascript'))) {
       tasks = [
         {
           id: 'task-1',
@@ -865,13 +865,24 @@ export class MockAIProvider implements AIProvider {
         }
       ];
     } else {
-      // General dynamic personal goal breakdown
+      // General dynamic personal goal breakdown with clean subject extraction
+      const rawCleaned = input.title
+        .replace(/ben\s+/gi, '')
+        .replace(/öğrenmek\s+istiyorum/gi, '')
+        .replace(/yapmayı\s+öğrenmek/gi, '')
+        .replace(/istiyorum/gi, '')
+        .replace(/sıfırdan\s+/gi, '')
+        .replace(/hedefim\s+bu\s+/gi, '')
+        .replace(/başlangıç\s+seviyesiyim/gi, '')
+        .trim();
+      const subject = rawCleaned.length > 0 ? rawCleaned.charAt(0).toUpperCase() + rawCleaned.slice(1) : 'Kişisel Hedef';
+
       tasks = [
         {
           id: 'task-1',
           dayNumber: 1,
-          title: `${input.title}: Hedef Analizi & Temel Kavramlar`,
-          description: `"${input.title}" hedefi için temel terimleri, gerekli araçları ve ilk adımları incele.`,
+          title: `${subject} — Hedef Analizi & Temel Kavramlar`,
+          description: `"${subject}" alanındaki temel terimleri, gerekli araçları ve ilk adımları detaylıca incele.`,
           taskType: 'learning_and_practice',
           durationMinutes: input.dailyMinutes,
           difficulty: 1,

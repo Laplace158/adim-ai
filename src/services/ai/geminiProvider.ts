@@ -32,42 +32,34 @@ export class GeminiAIProvider implements AIProvider {
     }
   }
 
-  // Working models prioritized by live availability
+  // Official working Google Gemini models
   private availableModels = [
-    'gemini-3.6-flash',
-    'gemini-2.5-flash',
-    'gemini-flash-latest',
-    'gemini-3.5-flash',
-    'gemini-2.5-pro'
+    'gemini-1.5-flash',
+    'gemini-1.5-pro',
+    'gemini-2.0-flash-exp'
   ];
 
   private buildGoalPrompt(input: GoalInput): string {
-    return `Sen "AdımAI" adında uzman bir Türkçe kişisel hedef rehberisin.
-GÖREVİN: Kullanıcının girdiği hedef cümlesini GERÇEK BİR AKILLI CHATBOT VE UZMAN KOÇ GİBİ analiz edip kişiselleştirilmiş 7 günlük uygulama planı oluşturmak.
+    return `Sen "AdımAI" adında evrensel, akıllı bir Türkçe kişisel hedef rehberi ve uzman yapay zeka koçusun.
+GÖREVİN: Kullanıcı ne yazarsa yazsın ("${input.title}"), bu hedef metnini DERİNLEMESİNE ANALİZ EDİP %100 O KULLANICININ YAZDIĞI ÖZEL KONUYA GÖRE KİŞİSELLEŞTİRİLMİŞ 7 günlük uygulama rotası oluşturmak.
 
-KULLANICININ TAM HEDEF CÜMLESİ:
+KULLANICININ YAZDIĞI TAM HEDEF METNİ:
 "${input.title}"
 
-KULLANICI BİLGİLERİ:
-- Kategori: ${input.category === 'language_learning' ? 'Dil Öğrenimi' : input.category === 'coding_project' ? 'Yazılım / Kodlama Projesi' : 'Sınav / Ders Çalışma'}
+KULLANICI SEÇİMLERİ:
+- Kategori Etiketi: ${input.category}
 - Seçilen Seviye: ${input.currentLevel}
 - Günlük Süre: ${input.dailyMinutes} dakika
 - Haftalık Çalışma: ${input.daysPerWeek} gün
 - İstenen Çıktı: "${input.desiredOutcome || input.title}"
-- Sadece Ücretsiz Kaynaklar: ${input.preferFreeResources ? 'Evet' : 'Hayır'}
+- Ücretsiz Kaynak Şartı: ${input.preferFreeResources ? 'Evet' : 'Hayır'}
 
-ÖNEMLİ DEĞERLENDİRME VE ADAPTASYON KURALLARI:
-1. CÜMLE VE ARAÇ ANALİZİ: Kullanıcının yazdığı cümleyi harfiyen oku ve niyetini kavra!
-   - Kullanıcı 'Yazılım' kategorisini seçmiş olsa dahi; cümlesinde "unreal engine", "unity", "game dev", "blender", "python", "flutter", "c++", "photoshop", "gitar", "piyano" gibi SPESİFİK BİR OYUN MOTORU, DİL VEYA ARAÇ geçiyorsa; GÖREVLERİ, KİLOMETRE TAŞLARINI VE ÖNERİLERİ %100 O OYUN MOTORUNA / ARACA ÖZEL OLUŞTUR (Örn. Unreal Engine için: Blueprint mantığı, 3D Viewport & Actors, Character Control, Collisions, Level Design, Packaging). ASLA JENERİK VİTE / REACT / WEB ŞABLONLARI KULLANMA.
-   - Eğer cümle belirsizse (örn: "dil öğrenmek istiyorum ama hangi dil bilmiyorum", "yazılım öğrenmek istiyorum" vb.):
-     "isOriginalGoalRealistic": false işaretle.
-     "explanation": Chatbot gibi kullanıcıya empati kurarak yol göster. Dil seçimi/teknoloji seçimi konusunda kılavuzluk yapacağını belirt.
-     "alternativeGoal": Kullanıcının belirsizliğini netleştiren somut bir başlık yaz (örn: "7 Günde Dil Seçimi ve Temel İngilizce Başlangıcı").
-     GÖREVLER: 1. Gün dil/teknoloji seçimi ve hedef analizi, 2. Gün temel selamlaşma/kurulum, 3. Gün en sık kullanılan yapılardan başlamalı.
-2. SEVİYE UYUMU: Kullanıcı "${input.currentLevel}" seviyesindedir. Görev zorluklarını bu seviyeye göre ölçekle.
-3. HER GÜN İÇİN ÜCRETSİZ TÜRKÇE/GLOBAL KAYNAK URL'Sİ ÖNER (BTK Akademi, YouTube, MDN, Khan Academy, Duolingo, Python.org vb.).
-4. ÖNEMLİ KİLOMETRE TAŞLARI (milestones): "milestones" dizisindeki 7. Gün, 14. Gün ve 30. Gün kilometre taşları TAMAMEN KULLANICININ HEDEFİNE ÖZEL (Örn. Gitar için "Temel Akorlar & Ritim Uyumu", Photoshop için "Katman & Maskeleme Yetkinliği", Piyano için "Çift El Koordinasyonu") VE SPESİFİK OLMALIDIR. ASLA "50 kelime veya komut paneli" gibi varsayılan jenerik metinler KULLANMA.
-5. Yanıtın SADECE geçerli JSON olmalı. Markdown kod bloğu veya açıklama EKLEME.
+ÖNEMLİ EVRENSEL CHATBOT VE AKILLI ANALİZ KURALLARI:
+1. EVRENSEL METİN ANALİZİ: Kategori butonuna TAKILMA! Kullanıcı metinde NE İSTİYORSA (Örn: marangozluk, satranç, astronomi, Unreal Engine, resim, aşçılık, bisiklet tamiri, Japonca, kuantum fiziği, piyano, gitar, vs.), 7 günlük görevleri, 7G/14G/30G kilometre taşlarını, başarı kriterlerini ve tavsiyeleri %100 O METNE VE KONUYA ÖZEL olarak üret. ASLA jenerik web/react/sınav/dil kalıpları basma.
+2. SEVİYE UYUMU: Kullanıcının "${input.currentLevel}" seviyesinde olduğunu dikkate al ve adım zorluklarını buna göre yapılandır.
+3. ÜCRETSİZ KAYNAK & YOUTUBE: Her gün için o konuya özel Türkçe/küresel öğrenim kaynağı veya YouTube arama konusu belirle.
+4. ÖNEMLİ KİLOMETRE TAŞLARI (milestones): 7. Gün, 14. Gün ve 30. Gün kilometre taşlarını TAMAMEN kullanıcının yazdığı spesifik hedefe özel uzmanlıkla tanımla.
+5. SADECE GEÇERLİ JSON DÖNDÜR. Markdown kod bloğu veya açıklama metni EKLEME.
 
 JSON ŞEMASI:
 {
