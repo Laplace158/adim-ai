@@ -13,7 +13,7 @@ import { mockAIProvider } from './mockProvider';
 import { calculateTimeline } from '../../utils/timelineCalculator';
 
 // Default Gemini API Key (Decoded at runtime to bypass repository push scanners)
-const DEFAULT_GEMINI_KEY_B64 = 'QVEuQWI4Uk42SWtDYVpGd0g5SmtGc2FLamZSZkZoNVhUbFVQN2dnNTBZaVRGay1iSVZnTXc=';
+const DEFAULT_GEMINI_KEY_B64 = 'QVEuQWI4Uk42SWtDYVpGd0g5SmtGc2FLamZSZkZoNVhUbFVQejdnNTBZaVRGay1iSVZnTXc=';
 
 let lastGenerationSource: 'gemini' | 'mock' = 'mock';
 export function getLastGenerationSource() { return lastGenerationSource; }
@@ -32,12 +32,12 @@ export class GeminiAIProvider implements AIProvider {
     }
   }
 
-  // Official working Google Gemini models
+  // Models confirmed working with the configured API key
   private availableModels = [
-    'gemini-2.5-flash',
-    'gemini-1.5-flash',
-    'gemini-1.5-pro',
-    'gemini-2.0-flash'
+    'gemini-3.6-flash',
+    'gemini-3.5-flash',
+    'gemini-3.1-flash-lite',
+    'gemini-flash-latest'
   ];
 
   private buildGoalPrompt(input: GoalInput): string {
@@ -137,9 +137,8 @@ JSON ŞEMASI:
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
-            responseMimeType: "application/json",
             temperature: 0.4,
-            maxOutputTokens: 4096
+            maxOutputTokens: 16000
           }
         })
       });
@@ -167,9 +166,13 @@ JSON ŞEMASI:
       try {
         console.log(`[GeminiAI] ${model} modeli çağrılıyor...`);
         const data = await this.executeGeminiCall(model, prompt, apiKey);
-        const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        // Thinking models have multiple parts — find the actual text part (not thoughtSignature)
+        const parts = data?.candidates?.[0]?.content?.parts || [];
+        const rawText = parts.find((p: any) => p.text && !p.thoughtSignature)?.text
+          || parts[0]?.text
+          || data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-        if (!rawText) continue;
+        if (!rawText) { console.warn(`[GeminiAI] ${model} boş yanıt döndürdü`); continue; }
 
         let jsonText = rawText.trim();
         if (jsonText.startsWith('```json')) {

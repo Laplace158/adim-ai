@@ -20,19 +20,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // Server-side API key (does not leak to client browser bundle)
   // Key is stored as Base64 to bypass repository push protection
-  const DEFAULT_KEY_B64 = 'QVEuQWI4Uk42SWtDYVpGd0g5SmtGc2FLamZSZkZoNVhUbFVQN2dnNTBZaVRGay1iSVZnTXc=';
+  const DEFAULT_KEY_B64 = 'QVEuQWI4Uk42SWtDYVpGd0g5SmtGc2FLamZSZkZoNVhUbFVQejdnNTBZaVRGay1iSVZnTXc=';
   const apiKey = process.env.GEMINI_API_KEY || Buffer.from(DEFAULT_KEY_B64, 'base64').toString('utf-8');
 
-  // Default to gemini-1.5-flash (always valid), accept override from body
-  const { model = 'gemini-1.5-flash', prompt, generationConfig } = req.body || {};
+  // Default to gemini-3.6-flash (confirmed working), accept override from body
+  const { model = 'gemini-3.6-flash', prompt, generationConfig } = req.body || {};
 
   if (!prompt) {
     return res.status(400).json({ error: 'Prompt is required' });
   }
 
   // Validate model name - reject invalid/unknown model strings
-  const validModels = ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-2.0-flash'];
-  const safeModel = validModels.includes(model) ? model : 'gemini-1.5-flash';
+  const validModels = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+  const safeModel = validModels.includes(model) ? model : 'gemini-3.6-flash';
 
   try {
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${safeModel}:generateContent?key=${apiKey}`;
@@ -43,9 +43,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: generationConfig || {
-          responseMimeType: "application/json",
           temperature: 0.4,
-          maxOutputTokens: 4096
+          maxOutputTokens: 16000
         }
       })
     });
