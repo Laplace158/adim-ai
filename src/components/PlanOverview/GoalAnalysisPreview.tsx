@@ -224,19 +224,19 @@ export const GoalAnalysisPreview: React.FC<GoalAnalysisPreviewProps> = ({
         </div>
       </div>
 
-      {/* Final Evidence Output — Black Title & Sleek Dark Card */}
-      <Card className="bg-slate-950 text-white space-y-4 border border-slate-800 shadow-xl">
-        <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
-          <Award className="w-5 h-5 text-amber-400" />
-          <h4 className="font-black text-lg text-white tracking-tight">
+      {/* Final Evidence Output — Sharp High Contrast Black Title */}
+      <Card className="bg-white text-slate-900 space-y-4 border border-slate-300 shadow-md">
+        <div className="flex items-center gap-2 pb-3 border-b border-slate-200">
+          <Award className="w-5 h-5 text-[#C85A32]" />
+          <h4 className="font-black text-lg text-slate-900 tracking-tight">
             Hedef Sonunda Oluşacak Somut Kanıtlar
           </h4>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
           {finalEvidence.map((ev, idx) => (
-            <div key={idx} className="bg-slate-900 p-3.5 rounded-xl border border-slate-800 flex items-start gap-2">
+            <div key={idx} className="bg-slate-900 text-white p-3.5 rounded-xl border border-slate-800 flex items-start gap-2 shadow-xs">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-              <span className="font-medium text-slate-200">{ev}</span>
+              <span className="font-semibold text-slate-100">{ev}</span>
             </div>
           ))}
         </div>
