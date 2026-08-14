@@ -1,5 +1,5 @@
-import React from 'react';
-import { Target, CheckCircle2, ShieldAlert, Sparkles, ArrowRight, Code, Languages, GraduationCap, Calendar, Clock, BarChart3, Play, ExternalLink, Flame, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Target, CheckCircle2, ShieldAlert, Sparkles, ArrowRight, Code, Languages, GraduationCap, Calendar, Clock, BarChart3, ChevronLeft, ChevronRight, Play, ExternalLink, Flame, Check } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Card } from './ui/Card';
 import { Badge } from './ui/Badge';
@@ -10,6 +10,37 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
+  const [activeTestimonialIdx, setActiveTestimonialIdx] = useState(0);
+
+  const testimonials = [
+    {
+      quote: "Yıllar süren yanlış başlangıçlardan sonra nihayet React ve Tailwind'de ilk projemi tamamladım. Belirsiz bir 'React öğren' listesi yerine her gün ne yapacağımı söyleyen tek bir eyleme sahip olmak harikaydı.",
+      author: "Erkan E.F.",
+      role: "Kendi Kendini Yetiştirmiş Geliştirici",
+      badge: "Yazılım Projesi • 42 Gün"
+    },
+    {
+      quote: "Japonca Hiragana ve Katakana alfabesini öğrenirken hep pes ediyordum. AdımAI günlük 25 dakikalık odak seansları ve Tofugu linkleriyle 2 haftada seyahat cümlelerimi konuşmamı sağladı.",
+      author: "Selin K.",
+      role: "Tasarımcı & Gezgin",
+      badge: "Dil Öğrenimi • 28 Gün"
+    },
+    {
+      quote: "YKS Biyoloji ve Matematik çalışırken konu dağları arasında kayboluyordum. Süreç bittiğinde elime verilen somut kanıt listesi ve deneme analizleri netlerimi %35 artırdı.",
+      author: "Mert Y.",
+      role: "YKS Sayısal Öğrencisi",
+      badge: "Sınav Hazırlığı • 60 Gün"
+    }
+  ];
+
+  const handleNextTestimonial = () => {
+    setActiveTestimonialIdx(prev => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrevTestimonial = () => {
+    setActiveTestimonialIdx(prev => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
     <div className="space-y-20 py-6 sm:py-10">
       {/* Hero Section */}
@@ -148,8 +179,55 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
           <FocusTimerWidget taskTitle="Örnek Görev: 25 Dakikalık Odak Seansı" defaultMinutes={25} />
         </div>
       </section>
+      {/* Demo Use Case Scenarios */}
+      <section className="max-w-4xl mx-auto px-4 text-center space-y-6">
+        <div className="space-y-2">
+          <Badge variant="indigo" className="font-semibold">DEMO SENARYOLARI & KULLANIM DURUMLARI</Badge>
+          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+            Gerçekçi Hedef Senaryoları & <span className="font-serif italic font-normal text-[#C85A32]">Kullanım Örnekleri</span>
+          </h2>
+        </div>
 
+        <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl space-y-6 relative max-w-2xl mx-auto">
+          <Badge variant="terracotta" className="text-xs">{testimonials[activeTestimonialIdx].badge}</Badge>
+          
+          <p className="text-sm sm:text-base text-slate-200 italic leading-relaxed font-serif">
+            "{testimonials[activeTestimonialIdx].quote}"
+          </p>
 
+          <div className="pt-2 border-t border-slate-800">
+            <span className="font-bold text-white text-sm block">{testimonials[activeTestimonialIdx].author} (Simülasyon Senaryosu)</span>
+            <span className="text-xs text-slate-400">{testimonials[activeTestimonialIdx].role}</span>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <button
+              onClick={handlePrevTestimonial}
+              className="p-2 rounded-full border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white transition-colors"
+              title="Önceki Deneyim"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <div className="flex items-center gap-1.5">
+              {testimonials.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    idx === activeTestimonialIdx ? 'bg-[#C85A32] w-5' : 'bg-slate-700'
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={handleNextTestimonial}
+              className="p-2 rounded-full border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white transition-colors"
+              title="Sonraki Deneyim"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Ready-to-use Popular Templates Quick Picker */}
       <section className="max-w-5xl mx-auto px-4 space-y-6">
