@@ -44,11 +44,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Navigation Links */}
         <nav className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#A4E8C2]/20 border border-[#A4E8C2]/40 text-[#241E2B] text-[11px] font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-[#C85A32] animate-pulse" />
-            <span>Gemini AI Proxy</span>
-          </div>
-
           <button
             onClick={() => onNavigate('landing')}
             className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
@@ -58,18 +53,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Ana Sayfa
-          </button>
-
-          <button
-            onClick={() => onNavigate('portfolio')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
-              currentStep === 'portfolio' 
-                ? 'bg-[#1E2338] text-white' 
-                : 'text-[#766F82] hover:text-[#241E2B] hover:bg-[#F3F0EC]'
-            }`}
-          >
-            <BookOpen className="w-4 h-4 text-[#C85A32]" />
-            <span>Case Study</span>
           </button>
 
           <button

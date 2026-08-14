@@ -376,9 +376,7 @@ export default function App() {
             <span>— Hedefini Yaz. Gerçekçi Yolunu Gör.</span>
           </div>
           <div className="flex items-center gap-4 text-[#766F82]">
-            <button onClick={() => setCurrentStep('portfolio')} className="hover:text-[#C85A32] font-bold">
-              Case Study / Portföy
-            </button>
+            <span>Sade İnsan Tasarımı</span>
             <span>•</span>
             <span>Gemini AI Entegre</span>
           </div>
