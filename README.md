@@ -5,7 +5,11 @@
 
   <p>
     <a href="https://adim-ai.vercel.app/" target="_blank">
-      <img src="https://img.shields.io/badge/🚀_Canlı_Demo-adim--ai.vercel.app-emerald?style=for-the-badge" alt="Live Demo" />
+      <img src="https://img.shields.io/badge/🚀_Canlı_Uygulama-adim--ai.vercel.app-22c55e?style=for-the-badge&logoColor=white" alt="Live Demo" />
+    </a>
+    &nbsp;
+    <a href="https://adim-ai.vercel.app/?portfolio=true" target="_blank">
+      <img src="https://img.shields.io/badge/📋_Portföy_/_Case_Study-Mimari_%26_Tasarım_Kararları-3B4274?style=for-the-badge&logoColor=white" alt="Portfolio / Case Study" />
     </a>
   </p>
 
@@ -13,10 +17,20 @@
     <img src="https://img.shields.io/badge/React-18-blue?logo=react" alt="React 18" />
     <img src="https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwind-css" alt="Tailwind CSS" />
-    <img src="https://img.shields.io/badge/Gemini_AI-1.5_Flash-orange?logo=google" alt="Gemini AI" />
+    <img src="https://img.shields.io/badge/Gemini_AI-3.6_Flash-orange?logo=google" alt="Gemini AI" />
     <img src="https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite" alt="Vite" />
   </p>
 </div>
+
+---
+
+## 🔗 Hızlı Erişim (Quick Links)
+
+| | Bağlantı | Açıklama |
+|---|---|---|
+| 🚀 | **[Canlı Uygulama →](https://adim-ai.vercel.app/)** | Uygulamayı doğrudan deneyin |
+| 📋 | **[Portföy / Case Study →](https://adim-ai.vercel.app/?portfolio=true)** | Mimari kararlar, tasarım süreci, teknik detaylar |
+| 💻 | **[GitHub Repo →](https://github.com/Laplace158/adim-ai)** | Kaynak kod |
 
 ---
 
@@ -24,7 +38,7 @@
 
 **AdımAI**, kullanıcıların doğal dille ifade ettiği ucu açık veya büyük hedefleri (dil öğrenimi, yazılım projesi, oyun geliştirme, sınav hazırlığı veya özel hobiler) matematiksel süre motoruyla **günlük mikro odak adımlarına** dönüştüren **yapay zeka destekli bir hedef ve alışkanlık koçudur**.
 
-🌐 **Canlı Demo Adresi**: [https://adim-ai.vercel.app/](https://adim-ai.vercel.app/)
+Kullanıcı ne yazarsa yazsın — Unity, satranç, ipek sanatı, Japonca, piyano — **Gemini 3.6 Flash AI** hedefe özel görevler, kilometre taşları, kaynak bağlantıları ve tavsiyeler üretir.
 
 ---
 
@@ -33,54 +47,54 @@
 ```mermaid
 graph TD
     A[Client Browser / PWA - React 18 + Vite] -->|POST /api/gemini| B[Vercel Serverless Proxy Endpoint]
-    B -->|Secret Protected API Call| C[Google Gemini 1.5 Flash AI Engine]
-    C -->|JSON Schema Response| B
+    B -->|Secret Protected API Call| C[Google Gemini 3.6 Flash AI Engine]
+    C -->|JSON Response| B
     B -->|Structured Goal & Tasks| A
+    A -->|Direct Fallback| C
     A -->|State & Progress Sync| D[LocalStorage Engine]
     A -.->|Prepared Integration Schema| E[(Supabase Cloud Database)]
 ```
 
 ### 🔒 Güvenlik & Proxy Mimarisi:
-API anahtarları istemci tarafında (frontend bundle) açıkta bırakılmaz. Tüm AI istekleri Vercel Serverless proxy katmanı (`/api/gemini`) veya çalışma zamanında çözülen güvenli istemci motoru üzerinden doğrudan iletilir.
+API anahtarları istemci tarafında (frontend bundle) açıkta bırakılmaz. Tüm AI istekleri öncelikle Vercel Serverless proxy katmanı (`/api/gemini`) üzerinden iletilir; proxy erişilemezse çalışma zamanında çözülen güvenli istemci motoru devreye girer.
 
 ---
 
 ## ✨ Öne Çıkan Özellikler (Key Features)
 
-- 🎯 **Akıllı Evrensel Hedef Bölümleme & Analiz**: Yapay zeka kullanıcının girdiği her türlü hedefi (Unreal Engine, Piyano, Photoshop, Dil, Satranç, Aşçılık vb.) derinlemesine inceler, gerçekçi minimum/maksimum gün süresini ve ilk 7 günlük eylem rotasını çıkarır.
-- ⏱️ **Canlı Odak Odası & Pomodoro Zamanlayıcı (`FocusTimerWidget`)**: Görev esnasında dikkati toplamayı sağlayan 25 dakikalık canlı sayaç ve entegre **Ambient Odak Sesi (Yağmur/Doğa Efekti)**.
-- 📚 **Konuya %100 Özel Doğrulanmış Kaynaklar**:
-  - 🎮 *Oyun Dev / Unreal Engine:* Epic Games Learning Portal, UE Docs, Polycount.
-  - 🎨 *Photoshop / Tasarım:* Adobe User Guide, Behance, Canva Design School.
-  - 🎸 *Gitar / Müzik:* Ultimate Guitar, Songsterr, JustinGuitar.
-  - 🎹 *Piyano / Müzik:* Piyano Tuş Rehberi, Nota & Akor Klavuzu.
-  - 💻 *Yazılım / Python:* MDN Web Docs, W3Schools, Patika.dev, Python.org.
-- 🧠 **Hedefe Özel Tanı & Seviye Testi**: Kullanıcının seçtiği konudaki hazır bulunuşluğunu ve seviyesini ölçen hedefe özel 4 dinamik soru.
+- 🎯 **Evrensel Hedef Analizi (Gemini 3.6 Flash)**: Kullanıcının girdiği her türlü hedefi (Unreal Engine, Piyano, Photoshop, Dil, Satranç, Aşçılık vb.) derinlemesine inceler; gerçekçi minimum/maksimum gün süresini ve ilk 7 günlük eylem rotasını üretir.
+- 🗓️ **7 Günlük Kişiselleştirilmiş Görev Rotası**: Her görev, hedef konusuna özel başlık, açıklama, zorluk seviyesi ve öğrenim kaynağı bağlantısı içerir.
+- 🏆 **Dinamik Kilometre Taşları (7G / 14G / 30G)**: Gemini AI hedefe özel ilerleme mihenk taşları belirler.
+- ⏱️ **Canlı Odak Odası & Pomodoro Zamanlayıcı**: Görev esnasında dikkati toplamayı sağlayan 25 dakikalık canlı sayaç ve entegre Ambient Odak Sesi.
 - 🔄 **Adaptif Check-in & Tekrar Sistemi**: *"Zorlandım"*, *"Vaktim Yoktu"* veya *"Çok Kolaydı"* seçimlerine göre görevi yeniden şekillendiren dinamik algoritma.
-- 🎓 **Somut Kanıt & CV Çıktısı**: Süreç sonunda GitHub README şablonu, kelime ustalık raporu ve özgeçmişe eklenebilecek somut çıktılar.
+- 🧠 **Hedefe Özel Tanı & Seviye Testi**: 4 dinamik soruyla kullanıcının o konudaki hazır bulunuşluk seviyesini ölçer.
+- 🎓 **Somut Kanıt & CV Çıktısı**: Süreç sonunda özgeçmişe eklenebilecek somut proje çıktıları ve başarı kriterleri.
 
 ---
 
 ## ⚠️ Bilinen Sınırlamalar & MVP Kapsamı (MVP Limitations)
 
-- **Veri Depolama**: Bu ilk sürüm (MVP), kullanıcı deneyimini kesintisiz kılmak amacıyla **LocalStorage** tabanlı çalışmaktadır. Klasör içerisindeki `supabase/schema.sql` ve `src/services/supabaseClient.ts` dosyaları veritabanı entegrasyonu için hazır mimari olarak hazırlanmıştır.
-- **AI Kota Yönetimi**: Ücretsiz Gemini API katmanında kota aşımı yaşandığında sistem otomatik olarak akıllı dinamik fallback moduna geçer.
+- **Veri Depolama**: Bu ilk sürüm (MVP), kullanıcı deneyimini kesintisiz kılmak amacıyla **LocalStorage** tabanlı çalışmaktadır. `supabase/schema.sql` ve `src/services/supabaseClient.ts` dosyaları veritabanı entegrasyonu için hazır mimari olarak mevcuttur.
+- **AI Kota Yönetimi**: Kota aşımı yaşandığında sistem otomatik olarak akıllı dinamik fallback moduna geçer.
 
 ---
 
 ## 💼 Özgeçmiş / CV Tanım İfadesi (Resume Bullet Point)
 
-> **Built and deployed AdımAI, an adaptive AI goal-planning PWA with Gemini integration, mathematical duration estimation, curated resources, Pomodoro focus mode and adaptive check-ins using React, TypeScript and Vite.**
+> **Built and deployed AdımAI, an adaptive AI goal-planning PWA using Gemini 3.6 Flash, with universal goal parsing, mathematical duration estimation, dynamic milestones, curated topic-specific resources, Pomodoro focus mode and adaptive check-ins — React 18, TypeScript, Vite, Vercel Serverless.**
 
 ---
 
 ## 🛠️ Teknolojiler (Tech Stack)
 
-- **Frontend**: React 18, TypeScript, Vite
-- **Styling**: Tailwind CSS (Handcrafted Terracotta & Indigo Tema, Google Playfair Display & Plus Jakarta Sans Fontları)
-- **Backend / Proxy**: Vercel Serverless Functions (`/api/gemini.ts`)
-- **AI Engine**: Google Gemini 1.5 Flash API (`v1beta` JSON Schema Generation)
-- **Icons & UI**: Lucide React
+| Katman | Teknoloji |
+|---|---|
+| **Frontend** | React 18, TypeScript, Vite |
+| **Styling** | Tailwind CSS (Terracotta & Indigo Tema) |
+| **AI Engine** | Google Gemini 3.6 Flash (`/v1beta` REST API) |
+| **Backend / Proxy** | Vercel Serverless Functions (`/api/gemini.ts`) |
+| **Icons & UI** | Lucide React |
+| **Storage** | LocalStorage (Supabase hazır mimari) |
 
 ---
 
@@ -112,6 +126,7 @@ npm run dev
 
 ## 👤 Geliştirici (Author)
 
-**Erkan E.F. (Laplace158)**  
-- GitHub: [@Laplace158](https://github.com/Laplace158)  
-- Live Application: [adim-ai.vercel.app](https://adim-ai.vercel.app/)
+**Erkan E.F. (Laplace158)**
+- 🐙 GitHub: [@Laplace158](https://github.com/Laplace158)
+- 🚀 Canlı Uygulama: [adim-ai.vercel.app](https://adim-ai.vercel.app/)
+- 📋 Portföy / Case Study: [adim-ai.vercel.app/?portfolio=true](https://adim-ai.vercel.app/?portfolio=true)

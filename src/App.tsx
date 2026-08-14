@@ -49,6 +49,12 @@ export default function App() {
       }
     }
 
+    // Auto-navigate via URL query params (e.g. ?portfolio=true from README links)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('portfolio') === 'true') {
+      setCurrentStep('portfolio');
+    }
+
     refreshSavedPlans();
   }, []);
 
