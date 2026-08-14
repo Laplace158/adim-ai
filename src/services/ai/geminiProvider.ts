@@ -67,7 +67,8 @@ KULLANICI BİLGİLERİ:
      Görevleri TAMAMEN ve SADECE bu spesifik konunun adım adım pratik uygulamalarına ayır. Jenerik şablon KULLANMA.
 2. SEVİYE UYUMU: Kullanıcı "${input.currentLevel}" seviyesindedir. Görev zorluklarını bu seviyeye göre ölçekle.
 3. HER GÜN İÇİN ÜCRETSİZ TÜRKÇE/GLOBAL KAYNAK URL'Sİ ÖNER (BTK Akademi, YouTube, MDN, Khan Academy, Duolingo, Python.org vb.).
-4. Yanıtın SADECE geçerli JSON olmalı. Markdown kod bloğu veya açıklama EKLEME.
+4. ÖNEMLİ KİLOMETRE TAŞLARI (milestones): "milestones" dizisindeki 7. Gün, 14. Gün ve 30. Gün kilometre taşları TAMAMEN KULLANICININ HEDEFİNE ÖZEL (Örn. Gitar için "Temel Akorlar & Ritim Uyumu", Photoshop için "Katman & Maskeleme Yetkinliği", Piyano için "Çift El Koordinasyonu") VE SPESİFİK OLMALIDIR. ASLA "50 kelime veya komut paneli" gibi varsayılan jenerik metinler KULLANMA.
+5. Yanıtın SADECE geçerli JSON olmalı. Markdown kod bloğu veya açıklama EKLEME.
 
 JSON ŞEMASI:
 {
@@ -80,9 +81,9 @@ JSON ŞEMASI:
   },
   "assumptions": ["Varsayım 1", "Varsayım 2", "Varsayım 3"],
   "milestones": [
-    {"day": 1, "title": "Kilometre Taşı 1", "successCriteria": "Başarı kriteri 1"},
-    {"day": 3, "title": "Kilometre Taşı 2", "successCriteria": "Başarı kriteri 2"},
-    {"day": 7, "title": "Kilometre Taşı 3", "successCriteria": "Başarı kriteri 3"}
+    {"day": 7, "title": "7. Gün Hedefine Özel Kilometre Taşı", "successCriteria": "7. Gün somut hedef çıktısı"},
+    {"day": 14, "title": "14. Gün Hedefine Özel Kilometre Taşı", "successCriteria": "14. Gün somut hedef çıktısı"},
+    {"day": 30, "title": "30. Gün Hedefine Özel Kilometre Taşı", "successCriteria": "30. Gün somut hedef çıktısı"}
   ],
   "tasks": [
     {

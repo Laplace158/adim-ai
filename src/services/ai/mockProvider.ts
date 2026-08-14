@@ -22,14 +22,49 @@ export class MockAIProvider implements AIProvider {
       input.preferFreeResources ? 'Yalnızca erişilebilir ücretsiz kaynaklar kullanılacak' : 'Ücretsiz ve açık topluluk kaynakları'
     ];
 
-    let milestones = [
-      { day: 7, title: 'Temel kavramlar & İlk Uygulama', successCriteria: 'Temel 50 kelime veya ilk komut paneli' },
-      { day: 14, title: 'Orta Seviye Senaryolar', successCriteria: '10 pratik senaryo tamamlama' },
-      { day: 30, title: 'İlk Proje / Canlı Değerlendirme', successCriteria: 'Tamamlanmış portföy çıktısı ve test başarısı' }
-    ];
+    const lowerTitle = input.title.toLowerCase();
+
+    // Generate dynamic topic-tailored milestones
+    let milestones = [];
+    if (lowerTitle.includes('gitar') || lowerTitle.includes('saz') || lowerTitle.includes('müzik') || lowerTitle.includes('akor')) {
+      milestones = [
+        { day: 7, title: 'Temel Akorlar & 4/4 Ritim', successCriteria: '3 temel akoru ve ritim kalıbını takılmadan çalmak' },
+        { day: 14, title: 'Akor Geçişleri & Tab Okuma', successCriteria: '5 şarkının akor ve ritim eşliğini tamamlamak' },
+        { day: 30, title: 'Tam Repertuar & Performans Kaydı', successCriteria: '10 şarkılık mini repertuarı baştan sona kaydedebilmek' }
+      ];
+    } else if (lowerTitle.includes('piano') || lowerTitle.includes('piyano')) {
+      milestones = [
+        { day: 7, title: 'Tuş Anatomisi & Sağ/Sol El Temeli', successCriteria: 'Do-Re-Mi dizisini ve temel bas sesleri çalmak' },
+        { day: 14, title: 'Çift El Koordinasyonu & Basit Akorlar', successCriteria: 'Sağ el melodi ve sol el akor eşliğini birleştirmek' },
+        { day: 30, title: 'Akıcı İcra & Eser Performansı', successCriteria: '3 tam eseri baştan sona ritimle çalmak' }
+      ];
+    } else if (lowerTitle.includes('photoshop') || lowerTitle.includes('ps') || lowerTitle.includes('tasarım') || lowerTitle.includes('görsel') || lowerTitle.includes('fotoğraf')) {
+      milestones = [
+        { day: 7, title: 'Katman Mantığı & Obje Seçimi', successCriteria: 'Layer Mask ve seçim araçları ile dekupe yapmak' },
+        { day: 14, title: 'Renk Tonlaması & Retouching', successCriteria: 'Adjustment Layers ve Healing Brush ile fotoğraf düzenlemek' },
+        { day: 30, title: 'Afiş Tasarımı & Portföy Çıktısı', successCriteria: '3 özgün sosyal medya afişini PSD/PNG teslim etmek' }
+      ];
+    } else if (input.category === 'language_learning' || lowerTitle.includes('dil') || lowerTitle.includes('ingilizce') || lowerTitle.includes('japonca') || lowerTitle.includes('almanca')) {
+      milestones = [
+        { day: 7, title: 'Temel Tanışma & Kelime Yapısı', successCriteria: '50 pratik kelime ve kendini tanıtma cümlelerini konuşmak' },
+        { day: 14, title: 'Günlük Diyalog & Cümle Kalıpları', successCriteria: 'Yön sorma, alışveriş ve ihtiyaç cümlelerini söylemek' },
+        { day: 30, title: 'Temel Konuşma Seviyesi (A1/A2)', successCriteria: '2 dakikalık kesintisiz sesli konuşma kaydı almak' }
+      ];
+    } else if (input.category === 'coding_project' || lowerTitle.includes('kod') || lowerTitle.includes('python') || lowerTitle.includes('react')) {
+      milestones = [
+        { day: 7, title: 'Bileşen Mimarisi & Responsive UI', successCriteria: 'React üzerinde temiz ve responsive arayüz basmak' },
+        { day: 14, title: 'State & LocalStorage Katmanı', successCriteria: 'Dinamik form verilerini kaydetmek ve filtrelemek' },
+        { day: 30, title: 'Canlı Uygulama & GitHub Portföyü', successCriteria: 'Vercel üzerinde yayında HTTPS demo ve README dokümanı' }
+      ];
+    } else {
+      milestones = [
+        { day: 7, title: 'Temel Kavramlar & İlk Pratik', successCriteria: 'Temel uygulama adımlarını ve ilk çıktıyı tamamlamak' },
+        { day: 14, title: 'Orta Seviye Egzersizler & İlerleme', successCriteria: 'Orta aşama hedeflerini uygulamalı gerçekleştirmek' },
+        { day: 30, title: 'Nihai Proje & Somut Kanıt', successCriteria: 'Hedefe özel tamamlanmış çıktıyı teslim etmek' }
+      ];
+    }
 
     let tasks: PlanTask[] = [];
-    const lowerTitle = input.title.toLowerCase();
 
     // Check if goal is vague (e.g. "hangi dil bilmiyorum")
     const isVagueLanguageGoal = lowerTitle.includes('hangi dil') || lowerTitle.includes('bilmiyorum') || lowerTitle.includes('karar ver');
