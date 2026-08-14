@@ -286,6 +286,90 @@ export class MockAIProvider implements AIProvider {
         }
       ];
     } else if (
+      lowerTitle.includes('piano') || 
+      lowerTitle.includes('piyano')
+    ) {
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: 'Piyano Tuş Anatomisi & Temel Oturuş Pozisyonu',
+          description: 'Piyanoda Do (C) sesini bulmayı öğren, 88 tuşlu klavye düzenini ve doğru oturuş/bilek pozisyonunu incele.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Klavyedeki tüm Do (C) seslerini doğru parmakla basmak',
+          freeResourceUrl: 'https://www.youtube.com',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Sağ El Sağlamlaştırma & Sol Anahtarı Notaları',
+          description: 'Sağ el 1-5 parmak numaralandırmasını öğren ve Do-Re-Mi-Fa-Sol dizisini metronomla bas.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Sağ el 5 parmak dizisini cızırtısız çalmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: 'Sol El Eşliği & Fa Anahtarı Giriş',
+          description: 'Sol el ile Do ve Sol bas seslerini çal, çift el koordinasyonuna ilk adımı at.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Sol el bas seslerini ritme uygun vurmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Temel Piyano Akorları: C (Do Majör) & G (Sol Majör)',
+          description: '3 sesli Do Majör ve Sol Majör akor basılışlarını öğren ve parmak geçiş pratiği yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'İki akor arasında 4/4 tempo ile geçiş yapmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Basit Melodi & Nota Takibi',
+          description: 'Ode to Joy veya bildiğin başlangıç melodisini sağ el nota, sol el akor eşliğiyle birleştir.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Melodiyi kesintisiz 1 dakika çalmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'Çift El Baştan Sona Şarkı İcrası',
+          description: 'Öğrenilen melodiyi sol el akor eşliği ve sağ el melodisi ile ritme uygun icra et.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Şarkıyı baştan sona çift el çalabilmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'Performans İncelemesi & Ses Kaydı',
+          description: 'Çaldığın eseri telefonla ses kaydı al, dinle ve tempo aksaklıklarını gider.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'İlk piyano performans kaydını tamamlamak',
+          status: 'pending'
+        }
+      ];
+    } else if (
       lowerTitle.includes('photoshop') || 
       lowerTitle.includes('ps') || 
       lowerTitle.includes('tasarım') || 
