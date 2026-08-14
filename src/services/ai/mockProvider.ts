@@ -285,7 +285,200 @@ export class MockAIProvider implements AIProvider {
           status: 'pending'
         }
       ];
-    } else {
+    } else if (
+      lowerTitle.includes('photoshop') || 
+      lowerTitle.includes('ps') || 
+      lowerTitle.includes('tasarım') || 
+      lowerTitle.includes('görsel') || 
+      lowerTitle.includes('grafik') || 
+      lowerTitle.includes('figma') || 
+      lowerTitle.includes('blender') || 
+      lowerTitle.includes('illüstratör') || 
+      lowerTitle.includes('fotoğraf')
+    ) {
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: 'Photoshop Arayüzü & Çalışma Alanı Kurulumu',
+          description: 'Photoshop arayüzünü aç, araç çubukları (Toolbar), katmanlar (Layers) paneli ve belge boyutlandırma ayarlarını incele.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Temel tuval alanını oluşturup çalışma alanını kaydetmek',
+          freeResourceUrl: 'https://helpx.adobe.com/tr/photoshop/user-guide.html',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Katmanlar (Layers) & Seçim Araçları',
+          description: 'Lasso Tool, Quick Selection ve Magic Wand araçlarıyla obje seçimi yap, katman maskesi (Layer Mask) oluştur.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Arka planı temiz kesilmiş bir görsel elde etmek',
+          freeResourceUrl: 'https://www.youtube.com',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: 'Renk Düzeltme & Adjustment Layers',
+          description: 'Brightness/Contrast, Curves ve Hue/Saturation ayar katmanları ile görsellerde tonlama ve renk düzenlemesi yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Görselin renk dengesini ve kontrastını iyileştirmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Fırça (Brush) & Tipografi Kullanımı',
+          description: 'Type Tool ile metin ekle, font aileleri, metin stilleri ve fırça (Brush) araçlarıyla estetik hizalamalar yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Başlık ve alt metin içeren bir tipografi çalışması çıkarmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Fotoğraf Retouching & Leke Temizleme',
+          description: 'Spot Healing Brush, Clone Stamp ve Content-Aware Fill araçlarını kullanarak fotoğraftaki lekeleri ve istenmeyen objeleri temizle.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Fotoğraftaki lekeleri doğal biçimde temizlemek',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'Sosyal Medya Afiş / Banner Tasarımı',
+          description: 'Öğrendiğin seçim, renk, tipografi ve katman stillerini (Drop Shadow, Stroke) kullanarak ilk özgün sosyal medya afişini tasarla.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: '1080x1080 boyutunda tamamlanmış afiş tasarımı',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'Proje Çıktısı Alma & Dışa Aktarma (Export)',
+          description: 'Tasarladığın projeleri PNG, JPEG ve PSD formatında dışa aktar ve portföyüne ekle.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Yüksek kaliteli PNG ve PSD çıktısını teslim almak',
+          status: 'pending'
+        }
+      ];
+    } else if (
+      lowerTitle.includes('gitar') || 
+      lowerTitle.includes('saz') || 
+      lowerTitle.includes('müzik') || 
+      lowerTitle.includes('piyano') || 
+      lowerTitle.includes('keman') || 
+      lowerTitle.includes('şarkı') || 
+      lowerTitle.includes('akor')
+    ) {
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: 'Gitar Anatomisi & Temel Sol/Sağ El Pozisyonu',
+          description: 'Gitar tutuşunu, tel isimlerini (E A D G B E) ve sağ el vuruş tekniklerini incele.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Boş tellere metronomla temiz vuruşlar yapmak',
+          freeResourceUrl: 'https://www.ultimate-guitar.com',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Temel Başlangıç Akorları: Em & E',
+          description: 'Em (Mi Minör) ve E (Mi Majör) akorlarının parmak basılışlarını öğren ve temiz ses al.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Cızırtısız akor sesi elde etmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: '4/4\'lük Temel Ritim Kalıbı',
+          description: 'İn-çık vuruşları ile metronom eşliğinde ritim tutma egzersizleri yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Tempolu şekilde 1 dakika ritim tutmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Geçiş Akorları: Am & C',
+          description: 'Am (La Minör) ve C (Do Majör) akorlarını öğrenip akorlar arası geçiş pratiği yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Akor geçişlerinde ritmi aksatmamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Tab Okuma & Basit Melodi Pratiği',
+          description: 'Gitar tab sistemini kavra ve bildiğin popüler tek sesli bir melodiyi çal.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Melodiyi doğru notalarla tamamlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'İlk Şarkıyı Baştan Sona Çalma',
+          description: 'Öğrenilen akorlar ve ritim kalıbı ile seçtiğin şarkıyı baştan sona eşlik et.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Şarkıyı ritimle tam icra etmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'Ses Kaydı & Performans Değerlendirmesi',
+          description: 'Çaldığın şarkıyı telefona kaydet, dinle ve ritim aksamalarını kontrol et.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'İlk performans kaydını tamamlamak',
+          status: 'pending'
+        }
+      ];
+    } else if (
+      lowerTitle.includes('sınav') || 
+      lowerTitle.includes('yks') || 
+      lowerTitle.includes('kpss') || 
+      lowerTitle.includes('tyt') || 
+      lowerTitle.includes('ayt') || 
+      lowerTitle.includes('biyoloji') || 
+      lowerTitle.includes('matematik') || 
+      lowerTitle.includes('fizik') || 
+      lowerTitle.includes('kimya') || 
+      lowerTitle.includes('ders') || 
+      input.category === 'exam_study'
+    ) {
       tasks = [
         {
           id: 'task-1',
@@ -365,6 +558,87 @@ export class MockAIProvider implements AIProvider {
           status: 'pending'
         }
       ];
+    } else {
+      // General dynamic personal goal breakdown
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: `${input.title}: Hedef Analizi & Temel Kavramlar`,
+          description: `"${input.title}" hedefi için temel terimleri, gerekli araçları ve ilk adımları incele.`,
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Temel kavramları ve çalışma planını not etmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Çalışma Ortamı Kurulumu & İlk Pratik',
+          description: 'Gerekli yazılım, araç veya materyalleri hazırlayıp ilk uygulamalı çalışmanı yap.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'İlk pratik adımı tamamlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: 'Temel Teknikler & Kılavuz Uygulaması',
+          description: 'Konuyla ilgili rehber içerikleri takip ederek başlangıç tekniklerini adım adım uygula.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Kılavuzdaki ilk 3 aşamayı başarmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Orta Seviye Uygulamalı Egzersiz',
+          description: 'Öğrendiğin temel bilgileri birleştirerek bağımsız bir minik uygulama gerçekleştir.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Egzersizi eksiksiz tamamlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Takılınan Noktalar & Hata İncelemesi',
+          description: 'Uygulama esnasında zorlandığın veya eksik kaldığın alanları tekrar et.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Eksik konuları giderip düzeltme yapmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'Tam Kapsamlı Uygulama / Taslak Çıktı',
+          description: 'Tüm öğrendiklerini kullanarak hedefine özel ilk somut çıktını üret.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Tamamlanmış taslak çıktıyı elde etmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'Haftalık Değerlendirme & Gelecek Rota',
+          description: 'Haftalık ilerlemeni gözden geçir, elde ettiğin çıktıyı kaydet ve 2. hafta rotanı belirle.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'İlerleme özetini tamamlamak',
+          status: 'pending'
+        }
+      ];
     }
 
     return {
@@ -385,7 +659,91 @@ export class MockAIProvider implements AIProvider {
   async generateDiagnosticTest(goalId: string, category: GoalCategory, goalTitle?: string, currentLevel?: string): Promise<DiagnosticTest> {
     const titleLower = (goalTitle || '').toLowerCase();
 
-    if (titleLower.includes('yapay zeka') || titleLower.includes('chatgpt') || titleLower.includes('ai')) {
+    if (
+      titleLower.includes('photoshop') || 
+      titleLower.includes('ps') || 
+      titleLower.includes('tasarım') || 
+      titleLower.includes('görsel') || 
+      titleLower.includes('grafik') || 
+      titleLower.includes('figma') || 
+      titleLower.includes('blender') || 
+      titleLower.includes('illüstratör') || 
+      titleLower.includes('fotoğraf')
+    ) {
+      return {
+        id: `diag-${Date.now()}`,
+        goalId,
+        category,
+        createdAt: new Date().toISOString(),
+        questions: [
+          {
+            id: 'q1',
+            question: 'Photoshop\'ta orijinal görsel verisini bozmadan renk tonlaması ve kontrast düzenlemesi yapmak için hangisi kullanılır?',
+            options: ['Adjustment Layers (Ayar Katmanları)', 'Rasterize Layer', 'Merge Down', 'Flatten Image'],
+            correctOptionIndex: 0,
+            topic: 'Photoshop Katman Mantığı',
+            explanation: 'Adjustment Layers (Ayar Katmanları) piksel silmeden renk ve ışık ayarı yapmayı sağlar.'
+          },
+          {
+            id: 'q2',
+            question: 'Fotoğraftaki leke veya istenmeyen küçük objeleri arka plan dokusuna uygun temizlemek için hangi araç tercih edilir?',
+            options: ['Spot Healing Brush / Content-Aware', 'Crop Tool', 'Pen Tool', 'Bucket Fill'],
+            correctOptionIndex: 0,
+            topic: 'Retouching & Fotoğraf Düzeltme',
+            explanation: 'Spot Healing Brush çevre dokuyu analiz ederek lekeleri akıllıca temizler.'
+          },
+          {
+            id: 'q3',
+            question: 'Photoshop öğrenimindeki ana hedefiniz ve mevcut seviyeniz nedir?',
+            options: ['Sıfırdan arayüz ve katman mantığını öğrenmek', 'Sosyal medya afiş ve içerikleri tasarlamak', 'Fotoğraf rötuş ve renk ayarları yapmak', 'İleri düzey manipülasyon çalışmaları üretmek'],
+            correctOptionIndex: 0,
+            topic: 'Seviye ve Beklenti Değerlendirmesi',
+            explanation: '7 günlük rotanız seçtiğiniz seviyeye göre şekillenecektir.'
+          }
+        ]
+      };
+    } else if (
+      titleLower.includes('gitar') || 
+      titleLower.includes('saz') || 
+      titleLower.includes('müzik') || 
+      titleLower.includes('piyano') || 
+      titleLower.includes('keman') || 
+      titleLower.includes('şarkı') || 
+      titleLower.includes('akor')
+    ) {
+      return {
+        id: `diag-${Date.now()}`,
+        goalId,
+        category,
+        createdAt: new Date().toISOString(),
+        questions: [
+          {
+            id: 'q1',
+            question: 'Gitarın standart akort düzeninde en kalın (6.) tel hangi notaya karşılık gelir?',
+            options: ['E (Mi)', 'A (La)', 'D (Re)', 'G (Sol)'],
+            correctOptionIndex: 0,
+            topic: 'Gitar Anatomisi & Notalar',
+            explanation: '6. en kalın tel Mi (E) sesine akort edilir.'
+          },
+          {
+            id: 'q2',
+            question: 'İki parmakla basılan en temel ve kolay gitar akorlarından biri hangisidir?',
+            options: ['Em (Mi Minör)', 'F (Fa Majör)', 'Bm (Si Minör)', 'G7'],
+            correctOptionIndex: 0,
+            topic: 'Temel Akor Bilgisi',
+            explanation: 'Em (Mi Minör) başlangıç için en rahat basılan temel akordur.'
+          },
+          {
+            id: 'q3',
+            question: 'Gitar çalmadaki ana hedefiniz ve mevcut seviyeniz nedir?',
+            options: ['Sıfırdan ilk şarkımı ritimle çalmak', 'Akor geçişlerimi hızlandırmak', 'Metronomla ritim kaçırmadan çalmak', 'Tab okuyarak solo ve melodiler icra etmek'],
+            correctOptionIndex: 0,
+            topic: 'Seviye ve Beklenti Değerlendirmesi',
+            explanation: '7 günlük rotanız seçtiğiniz seviyeye göre şekillenecektir.'
+          }
+        ]
+      };
+    } else if (titleLower.includes('yapay zeka') || titleLower.includes('chatgpt') || titleLower.includes('ai')) {
       return {
         id: `diag-${Date.now()}`,
         goalId,

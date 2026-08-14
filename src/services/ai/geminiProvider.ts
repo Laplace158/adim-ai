@@ -12,7 +12,7 @@ import {
 import { mockAIProvider } from './mockProvider';
 import { calculateTimeline } from '../../utils/timelineCalculator';
 
-// Default Gemini API Key from environment variable or localStorage
+// Gemini API Key from LocalStorage or environment variable
 let lastGenerationSource: 'gemini' | 'mock' = 'mock';
 export function getLastGenerationSource() { return lastGenerationSource; }
 
@@ -20,7 +20,7 @@ export class GeminiAIProvider implements AIProvider {
   private getApiKey(): string {
     const customKey = localStorage.getItem('adimai_gemini_api_key');
     if (customKey && customKey.trim().length > 10) return customKey.trim();
-    return '';
+    return import.meta.env.VITE_GEMINI_API_KEY || '';
   }
 
   // Working models prioritized by live availability

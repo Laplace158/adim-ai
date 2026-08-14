@@ -24,8 +24,24 @@ export const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   const getResources = () => {
     const topic = (task.title + ' ' + goalTitle).toLowerCase();
 
+    // 0. Photoshop / Graphic Design / Visual Arts
+    if (topic.includes('photoshop') || topic.includes('ps') || topic.includes('tasarım') || topic.includes('görsel') || topic.includes('grafik') || topic.includes('figma') || topic.includes('blender') || topic.includes('illüstratör') || topic.includes('fotoğraf') || topic.includes('retouch')) {
+      return {
+        youtubeVideos: [
+          { title: `${task.title} — Photoshop & Tasarım Eğitimi`, channel: 'Tasarım Kanalı TR / Adobe Eğitim', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' photoshop dersi') },
+          { title: `Uygulamalı Photoshop Atölyesi: ${task.title}`, channel: 'Kreatif Rehber TR', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' photoshop uygulama') }
+        ],
+        websites: [
+          { name: 'Adobe Photoshop User Guide & Behance', desc: 'Resmi araç rehberleri, katman maskeleri ve ilham verici portföyler', rating: 4.9, url: 'https://helpx.adobe.com/tr/photoshop/user-guide.html' },
+          { name: 'Phlearn & Canva Design School', desc: 'Fotoğraf rötuşlama, fırçalar ve renk düzenleme kılavuzları', rating: 4.9, url: 'https://www.behance.net' }
+        ],
+        forumSummary: 'Tasarım ve Photoshop toplulukları (Reddit/Behance): Katmanlar (Layers) paneli kısayollarını ve Layer Mask kullanımını öğrenmek çalışma hızını 3 katına çıkarıyor.',
+        rating: 4.9,
+        reviewsCount: 385
+      };
+    }
     // 1. Guitar / Music / Instruments
-    if (topic.includes('gitar') || topic.includes('akor') || topic.includes('şarkı') || topic.includes('müzik') || topic.includes('bağlama') || topic.includes('piyano')) {
+    else if (topic.includes('gitar') || topic.includes('akor') || topic.includes('şarkı') || topic.includes('müzik') || topic.includes('bağlama') || topic.includes('piyano')) {
       return {
         youtubeVideos: [
           { title: `${task.title} — Temel Gitar Akor ve Ritim Dersi`, channel: 'Onur Yüce / Gitar Rehberi TR', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' gitar dersi') },
