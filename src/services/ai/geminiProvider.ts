@@ -34,9 +34,10 @@ export class GeminiAIProvider implements AIProvider {
 
   // Official working Google Gemini models
   private availableModels = [
+    'gemini-2.5-flash',
     'gemini-1.5-flash',
     'gemini-1.5-pro',
-    'gemini-2.0-flash-exp'
+    'gemini-2.0-flash'
   ];
 
   private buildGoalPrompt(input: GoalInput): string {
@@ -106,11 +107,14 @@ JSON ŞEMASI:
       });
 
       if (proxyRes.ok) {
-        clearTimeout(timeoutId);
-        return await proxyRes.json();
+        const proxyData = await proxyRes.json();
+        if (proxyData && proxyData.candidates && proxyData.candidates.length > 0) {
+          clearTimeout(timeoutId);
+          return proxyData;
+        }
       }
     } catch {
-      // Proxy not available (e.g. local dev without vercel cli), continue to direct fetch
+      // Proxy failed or 500 error, continue directly to direct client fetch
     }
 
     // 2. Direct Gemini API call if custom API Key or client key is provided
