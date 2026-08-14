@@ -55,14 +55,10 @@ export const PlanDashboard: React.FC<PlanDashboardProps> = ({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-stone-100 pb-4">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2.5 py-0.5 rounded-full bg-[#C85A32]/10 text-[#C85A32] border border-[#C85A32]/30 text-[11px] font-bold">
-                Plan v{plan.version}
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full bg-[#1E2338] text-white text-[11px] font-bold">
-                {category === 'coding_project' ? 'Yazılım' : category === 'language_learning' ? 'Dil Öğrenimi' : category === 'exam_study' ? 'Sınav' : 'Özel Hedef'}
-              </span>
+              <Badge variant="terracotta">Plan Versiyonu: v{plan.version}</Badge>
+              <Badge variant="slate">{category === 'coding_project' ? 'Yazılım' : category === 'language_learning' ? 'Dil Öğrenimi' : category === 'exam_study' ? 'Sınav' : 'Özel Hedef'}</Badge>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#241E2B] tracking-tight">{goalTitle}</h2>
+            <h2 className="text-2xl font-bold text-slate-900">{goalTitle}</h2>
           </div>
 
           <div className="flex items-center gap-2 self-stretch sm:self-auto justify-end">

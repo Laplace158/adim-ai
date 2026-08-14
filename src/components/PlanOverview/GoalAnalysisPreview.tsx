@@ -62,14 +62,14 @@ export const GoalAnalysisPreview: React.FC<GoalAnalysisPreviewProps> = ({
 
       {/* Header Banner */}
       <div className="text-center space-y-3">
-        <span className="px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-[#A4E8C2]/20 text-[#241E2B] border border-[#A4E8C2]/40 inline-flex items-center gap-1.5">
-          <CheckCircle2 className="w-4 h-4 text-[#C85A32]" />
+        <Badge variant="emerald" className="px-3.5 py-1 text-sm">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 mr-1.5" />
           Hedef Analizi ve Gerçekçi Süre Raporu Tamamlandı
-        </span>
-        <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#241E2B] tracking-tight">
+        </Badge>
+        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
           {realisticAssessment.alternativeGoal}
         </h2>
-        <p className="text-[#766F82] text-sm max-w-xl mx-auto">
+        <p className="text-slate-600 text-sm max-w-xl mx-auto">
           {analysis.goalSummary}
         </p>
 

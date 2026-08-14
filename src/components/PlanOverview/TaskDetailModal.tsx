@@ -24,23 +24,6 @@ export const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   const getResources = () => {
     const topic = (task.title + ' ' + goalTitle).toLowerCase();
 
-    // 0. Blender / 3D Modeling / Animation
-    if (topic.includes('blender') || topic.includes('3d') || topic.includes('modelleme') || topic.includes('animasyon') || topic.includes('render') || topic.includes('görsel')) {
-      return {
-        youtubeVideos: [
-          { title: `${task.title} — Blender 3D Sıfırdan Başlangıç Dersi`, channel: 'Blender TR / Donut Tutorial', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' blender 3d dersi') },
-          { title: `Blender 3D Modelleme & Kısayol Rehberi: ${task.title}`, channel: '3D Akademi & CG Cookie', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' blender 3d modelleme') }
-        ],
-        websites: [
-          { name: 'Blender Official Manual & Docs', desc: 'Resmi Türkçe ve İngilizce Blender 3D kullanım kılavuzu', rating: 5.0, url: 'https://docs.blender.org' },
-          { name: 'CG Cookie & Blender Guru', desc: 'Sıfırdan ileri seviye 3D modelleme ve kaplama eğitimleri', rating: 4.9, url: 'https://cgcookie.com' }
-        ],
-        forumSummary: 'Blender 3D ve CG toplulukları (Reddit r/blender, Ekşi): Temel kısayolları (G: Taşı, R: Döndür, S: Ölçekle, Tab: Edit Mode, E: Extrude) öğrenmek modelleme hızını 3 katına çıkarıyor.',
-        rating: 4.9,
-        reviewsCount: 540
-      };
-    }
-
     // 1. Guitar / Music / Instruments
     if (topic.includes('gitar') || topic.includes('akor') || topic.includes('şarkı') || topic.includes('müzik') || topic.includes('bağlama') || topic.includes('piyano')) {
       return {

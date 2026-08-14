@@ -1,317 +1,200 @@
-import React, { useState } from 'react';
-import { 
-  ArrowRight, ShieldAlert, Split, Calculator, RefreshCw, BadgeCheck, 
-  Sparkles, CheckCircle2, Clock, Play, BookOpen, ChevronRight, Lock
-} from 'lucide-react';
+import React from 'react';
+import { Target, CheckCircle2, ShieldAlert, Sparkles, ArrowRight, Code, Languages, GraduationCap, Calendar, Clock, BarChart3, Play, ExternalLink, Flame, Check } from 'lucide-react';
 import { Button } from './ui/Button';
+import { Card } from './ui/Card';
+import { Badge } from './ui/Badge';
 import { FocusTimerWidget } from './FocusTimer/FocusTimerWidget';
-import { GoalCategory } from '../types';
 
 interface LandingPageProps {
   onStartGoal: () => void;
-  onStartGoalWithTemplate?: (title: string, category: GoalCategory, level: 'beginner' | 'intermediate' | 'advanced') => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal, onStartGoalWithTemplate }) => {
-  const [quickGoalInput, setQuickGoalInput] = useState('');
-  const [activeFeatureIdx, setActiveFeatureIdx] = useState(0);
-
-  const problems = [
-    {
-      num: '01',
-      problem: 'Büyük Hedefler Göz Korkutur',
-      desc: 'Büyük hedefler nereden başlanacağını bilemeyince ertelenir.',
-      solution: 'AdımAI hedefinizi günlük 15-30 dakikalık tek bir mikro adıma indirir. Bugün ne yapacağınızı netleştirir.'
-    },
-    {
-      num: '02',
-      problem: 'Chatbot Cevapları Sohbet İçinde Kaybolur',
-      desc: 'ChatGPT uzun bir liste verir ancak takip etmez.',
-      solution: 'Planınız sohbet penceresinde kalmaz; panonuzda canlı yaşar ve aksattığınızda adaptif olarak yenilenir.'
-    },
-    {
-      num: '03',
-      problem: 'Yapılacaklar Uygulamaları Fazla Planlama İster',
-      desc: 'Form doldurmak ve kategori ayarlamak vakit kaybettirir.',
-      solution: 'Hedefinizi doğal cümlenizle yazarsınız; yapay zeka saniyeler içinde rotayı çıkarır.'
-    },
-    {
-      num: '04',
-      problem: 'Kullanıcı Hangi Kaynağı Kullanacağını Bilemez',
-      desc: 'İçerik denizinde doğru dokümanı ve videoyu bulmak zordur.',
-      solution: 'Her görevin içine hedefe özel doğrulanmış YouTube videoları, dokümanlar ve forum özetleri eklenir.'
-    }
-  ];
-
-  const features = [
-    {
-      title: 'Akıllı Hedef Bölümleme',
-      subtitle: 'Büyük hedefi günlük bir sonraki adıma indirir',
-      desc: 'Kullanıcı “İngilizce öğrenmek istiyorum” dediğinde uygulama bunu ölçülebilir bir sonuca, süre aralığına ve bugün tamamlanabilecek tek bir göreve dönüştürür.',
-      tags: ['Doğal Dil Girdisi', 'Mikro Görevler', 'İlk Hafta Planı']
-    },
-    {
-      title: 'Matematiksel Süre Hesabı',
-      subtitle: 'Süreyi hisle değil, kapasiteyle hesaplar',
-      desc: 'Günlük dakika, haftalık devamlılık ve hedef kapsamı bir araya gelir. Sistem tek bir sihirli sayı yerine varsayımlı bir minimum ve maksimum aralık üretir.',
-      tags: ['Süre Motoru', 'Varsayımlar', 'Aralık Tahmini']
-    },
-    {
-      title: 'Adaptif Plan Güncelleme',
-      subtitle: 'Kullanıcı geride kalınca planı küçültür',
-      desc: '“Zorlandım”, “vaktim yoktu” ve “çok kolaydı” check-in’leri planı bozmadan rotayı yeniden ayarlar. Kullanıcıyı suçlamaz, bir sonraki uygulanabilir adımı bulur.',
-      tags: ['Adaptif Check-in', 'Fallback Modu', 'İlerleme Durumu']
-    },
-    {
-      title: 'Hedef Kanıtı & İsteğe Bağlı CV Çıktısı',
-      subtitle: 'İlerlemeyi somut bir kanıta dönüştürür',
-      desc: 'Proje bağlantısı, kelime ustalık raporu, mini test sonucu veya çalışma günlüğü. CV çıktısı isteğe bağlı, gerçek ilerleme her zaman görünür.',
-      tags: ['Kanıt Dosyası', 'Portföy Çıktısı', 'Özgeçmiş Maddesi']
-    }
-  ];
-
-  const handleQuickSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (quickGoalInput.trim() && onStartGoalWithTemplate) {
-      onStartGoalWithTemplate(quickGoalInput.trim(), 'coding_project', 'beginner');
-    } else {
-      onStartGoal();
-    }
-  };
-
+export const LandingPage: React.FC<LandingPageProps> = ({ onStartGoal }) => {
   return (
-    <div className="space-y-24 py-8 sm:py-12">
-      {/* 1. HERO SECTION */}
-      <section className="max-w-4xl mx-auto text-center space-y-8 px-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C85A32]/10 border border-[#C85A32]/30 text-[#C85A32] text-xs font-bold uppercase tracking-wider">
+    <div className="space-y-20 py-6 sm:py-10">
+      {/* Hero Section */}
+      <section className="text-center max-w-3xl mx-auto space-y-6 px-4">
+        <div className="inline-flex items-center gap-2 p-1 pl-3 pr-3.5 rounded-full bg-[#C85A32]/10 border border-[#C85A32]/30 text-[#C85A32] text-xs font-bold">
           <span className="w-2 h-2 rounded-full bg-[#C85A32] animate-pulse" />
           <span>ADIMAI V2.0 CANLI</span>
-          <span className="text-stone-400">•</span>
-          <span>SOHBET PENCERELERİNDE UNUTULMAZ</span>
+          <span className="text-slate-400">•</span>
+          <span className="font-semibold text-slate-700">HEDEFLER SOHBETLERDE UNUTULMAZ &rarr;</span>
         </div>
 
-        <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal text-[#241E2B] tracking-tight leading-[0.95]">
-          Hedefini yaz.<br />
-          <em className="italic font-normal text-[#C85A32]">Gerçekçi yolunu gör.</em>
+        <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+          Herhangi bir hedefi<br />
+          <span className="font-serif italic font-normal text-[#C85A32]">1. Hafta eylem planına dönüştür.</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-[#766F82] max-w-2xl mx-auto leading-relaxed">
-          AdımAI, büyük hedefleri gerçekçi sürelere, günlük mikro görevlere ve ölçülebilir ilerlemeye dönüştürür.
+        <p className="text-lg sm:text-xl text-stone-600 max-w-2xl mx-auto leading-relaxed">
+          Bir başka ucu açık yapılacaklar listesi veya yapay zeka makalesi değil — iki dakika içinde günlük odak adımları, zaman tahminleri ve hedefe özel kaynaklar.
         </p>
 
-        {/* Quick Goal Input Field */}
-        <form onSubmit={handleQuickSubmit} className="max-w-xl mx-auto relative flex items-center">
-          <input
-            type="text"
-            value={quickGoalInput}
-            onChange={(e) => setQuickGoalInput(e.target.value)}
-            placeholder="Örn: 2 ay sonra Japonya seyahatim var, seyahat Japoncası öğrenmek istiyorum..."
-            className="w-full pl-5 pr-36 py-4 rounded-2xl border border-[#E5DFDA] bg-white text-sm text-[#241E2B] placeholder:text-[#766F82]/70 focus:outline-none focus:border-[#C85A32] focus:ring-2 focus:ring-[#C85A32]/20 shadow-sm"
-          />
-          <button
-            type="submit"
-            className="absolute right-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#C85A32] hover:bg-[#E06438] transition-all flex items-center gap-1.5 shadow-sm"
-          >
-            Plan Oluştur <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button size="lg" onClick={onStartGoal} className="w-full sm:w-auto shadow-xl font-extrabold text-base bg-[#C85A32] text-white hover:bg-[#B04A26] group">
+            Ücretsiz Planımı Oluştur &rarr;
+          </Button>
+        </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-[#766F82]">
-          <button onClick={onStartGoal} className="hover:text-[#C85A32] underline underline-offset-4">
-            Ücretsiz planımı oluştur &rarr;
-          </button>
+        <div className="flex items-center justify-center gap-4 text-xs font-semibold text-stone-500 pt-1">
+          <span>KREDİ KARTI GEREKMEZ</span>
           <span>•</span>
-          <a href="#how-it-works" className="hover:text-[#C85A32]">
-            Nasıl çalışır? ↓
-          </a>
+          <span>SOHBET PENCERESİ DEĞİL</span>
+          <span>•</span>
+          <span>CANLI ADAPTİF TAKİP</span>
         </div>
       </section>
 
-      {/* 2. PROBLEM AND SOLUTION (Numbered Rows with Typographic Hierarchy) */}
-      <section className="max-w-5xl mx-auto px-4 space-y-10">
-        <div className="space-y-2 border-b border-[#E5DFDA] pb-6">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C85A32]">PROBLEM & ÇÖZÜM</span>
-          <h2 className="font-serif text-4xl sm:text-5xl tracking-tight text-[#241E2B]">
-            Neden çoğu hedef yarım kalır?
-          </h2>
-          <p className="text-sm text-[#766F82]">
-            Geleneksel yöntemlerin tıkanma noktaları ve AdımAI'nın getirdiği somut çözümler.
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          {problems.map((item, idx) => (
-            <div key={idx} className="p-6 sm:p-8 rounded-2xl border border-[#E5DFDA] bg-white shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-[#C85A32]/50 transition-colors">
-              <div className="flex items-start gap-5">
-                <span className="font-serif text-4xl font-normal text-[#C85A32] shrink-0 leading-none">{item.num}</span>
-                <div className="space-y-1">
-                  <h3 className="font-bold text-lg text-[#241E2B]">{item.problem}</h3>
-                  <p className="text-xs text-[#766F82]">{item.desc}</p>
-                </div>
-              </div>
-
-              <div className="md:max-w-md bg-[#F6E7DF] p-4 rounded-xl border border-[#C85A32]/20 text-xs text-[#C85A32] font-medium leading-relaxed">
-                <strong className="block text-[#C85A32] font-bold mb-0.5">ADIMAI ÇÖZÜMÜ:</strong>
-                {item.solution}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. INTERACTIVE 4-STEP FEATURE BREAKDOWN */}
-      <section id="how-it-works" className="max-w-5xl mx-auto px-4 space-y-10 pt-6">
-        <div className="space-y-2 border-b border-[#E5DFDA] pb-6">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C85A32]">4 AŞAMALI SİSTEM</span>
-          <h2 className="font-serif text-4xl sm:text-5xl tracking-tight text-[#241E2B]">
-            AdımAI Nasıl Çalışır?
-          </h2>
-          <p className="text-sm text-[#766F82]">
-            Etkileşimli özellikleri keşfetmek için sekmelere tıklayabilirsiniz.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-5 space-y-3" role="tablist">
-            {features.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveFeatureIdx(idx)}
-                role="tab"
-                aria-selected={idx === activeFeatureIdx}
-                className={`w-full p-4 rounded-xl border text-left transition-all ${
-                  idx === activeFeatureIdx
-                    ? 'bg-[#1E2338] text-white border-[#1E2338] shadow-md'
-                    : 'bg-white text-[#766F82] border-[#E5DFDA] hover:border-[#C85A32]'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif text-xl leading-none">{`0${idx + 1}`}</span>
-                  <ChevronRight className="w-4 h-4 opacity-60" />
-                </div>
-                <strong className="block text-sm font-bold mt-2 text-inherit">{item.title}</strong>
-                <small className="block text-xs opacity-75 mt-0.5">{item.subtitle}</small>
-              </button>
-            ))}
-          </div>
-
-          <div className="lg:col-span-7 bg-[#1E2338] text-white p-8 sm:p-10 rounded-2xl shadow-xl min-h-[300px] flex flex-col justify-between" role="tabpanel">
-            <div>
-              <span className="text-xs font-mono font-bold text-[#A4E8C2] uppercase tracking-wider block mb-2">
-                AŞAMA 0{activeFeatureIdx + 1}
-              </span>
-              <h3 className="text-2xl font-bold text-white tracking-tight">
-                {features[activeFeatureIdx].title}
-              </h3>
-              <p className="text-sm text-slate-300 mt-3 leading-relaxed">
-                {features[activeFeatureIdx].desc}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2 pt-6 border-t border-white/10 mt-6">
-              {features[activeFeatureIdx].tags.map((t, idx) => (
-                <span key={idx} className="px-3 py-1 rounded-full border border-white/20 text-xs text-slate-200">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. POMODORO FOCUS SPACE (Dark Indigo Dedicated Space) */}
+      {/* Why Most Goals Stall Section (FocusAI Inspired Dark Problem Grid) */}
       <section className="max-w-5xl mx-auto px-4">
-        <div className="bg-[#1E2338] text-white rounded-3xl p-8 sm:p-12 shadow-2xl space-y-8">
+        <div className="bg-slate-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl space-y-8 relative overflow-hidden">
           <div className="text-center space-y-2 max-w-xl mx-auto">
             <span className="px-3 py-1 rounded-full bg-[#C85A32]/20 border border-[#C85A32]/40 text-[#C85A32] font-bold text-[11px] uppercase tracking-wider">
-              CANLI ODAK ALANI
+              PROBLEM & ÇÖZÜM
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl tracking-tight text-white">
-              25 Dakikalık Derin Odak Modu
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Çoğu hedef neden <span className="font-serif italic font-normal text-[#C85A32]">başlamadan yarım kalır?</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Görevlerinize odaklanırken yağmur sesleri ve entegre Pomodoro zamanlayıcı ile dikkatinizi koruyun.
+            <p className="text-xs sm:text-sm text-slate-400">
+              Öğrencileri, geliştiricileri ve kendi kendini yetiştirenleri yarı yolda bırakan 4 engel — ve AdımAI'nın her birini nasıl çözdüğü.
             </p>
           </div>
 
-          <div className="max-w-xl mx-auto">
-            <FocusTimerWidget taskTitle="Örnek Odak Görevi: 25 Dakikalık Pratik Seansı" defaultMinutes={25} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">ENGEL 1</span>
+              <h3 className="font-bold text-base text-white">Büyük Hedefler Çok Büyüyüp Göz Korkutur</h3>
+              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-1">
+                <span className="text-[#C85A32] font-bold block">ADIMAI NASIL ÇÖZER:</span>
+                <p>Hedefinizi günlük 15-30 dakikalık net mikro adımlara böleriz. Bugün yapacağınız tek bir adımı bilirsiniz.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">ENGEL 2</span>
+              <h3 className="font-bold text-base text-white">ChatGPT Uzun Bir Liste Verir, Sonra Unutulur</h3>
+              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-1">
+                <span className="text-[#C85A32] font-bold block">ADIMAI NASIL ÇÖZER:</span>
+                <p>Planınız sohbet penceresinde kalmaz. Panonuzda canlı yaşar; zorlandığınızda veya geri kaldığınızda adaptif olarak yenilenir.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">ENGEL 3</span>
+              <h3 className="font-bold text-base text-white">Yapılacaklar Uygulamaları Planlamakla Vakit Harcatır</h3>
+              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-1">
+                <span className="text-[#C85A32] font-bold block">ADIMAI NASIL ÇÖZER:</span>
+                <p>Karmaşık formlarla zaman kaybetmezsiniz. Hedefinizi kendi doğal cümlenizle yazarsınız, yapay zeka saniyeler içinde rotayı çıkarır.</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-900/90 p-5 rounded-2xl border border-slate-800 space-y-3">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">ENGEL 4</span>
+              <h3 className="font-bold text-base text-white">Ne İzleyeceğinizi veya Okuyacağınızı Bilemezsiniz</h3>
+              <div className="bg-slate-950 p-3 rounded-xl border border-slate-800/80 text-xs text-slate-300 space-y-1">
+                <span className="text-[#C85A32] font-bold block">ADIMAI NASIL ÇÖZER:</span>
+                <p>Her görevin içinde doğrulanmış YouTube videoları, kaynak bağlantıları ve forum özetleri hazır olarak gelir.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. POPULAR GOAL TEMPLATES */}
+      {/* How It Works 4-Step Grid (FocusAI Inspired) */}
+      <section className="max-w-5xl mx-auto px-4 space-y-8">
+        <div className="text-center space-y-2">
+          <Badge variant="terracotta" className="font-semibold">NASIL ÇALIŞIR?</Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            AdımAI İle <span className="font-serif italic font-normal text-[#C85A32]">İlerleme Ritimleri</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="space-y-4 border-stone-200">
+            <span className="text-xs font-mono font-bold text-[#C85A32] tracking-wider block">01 / AKILLI BÖLÜMLEME</span>
+            <h3 className="text-xl font-bold text-slate-900">Otomatik Görev Dağılımı</h3>
+            <p className="text-xs text-stone-600 leading-relaxed">
+              Herhangi bir hedef yazın veya hazır şablonlardan birini seçin — net süre tahminleri ve ilk gün adımıyla sıralı görev dizisi elde edin.
+            </p>
+          </Card>
+
+          <Card className="space-y-4 border-stone-200">
+            <span className="text-xs font-mono font-bold text-[#C85A32] tracking-wider block">02 / GERÇEKÇİ SÜRE MOTORU</span>
+            <h3 className="text-xl font-bold text-slate-900">Matematiksel Gün Hesabı</h3>
+            <p className="text-xs text-stone-600 leading-relaxed">
+              Süre uydurmak yok. Günde ayırabileceğiniz dakika ve haftalık devamlılığınıza göre matematiksel minimum ve maksimum gün hesaplanır.
+            </p>
+          </Card>
+
+          <Card className="space-y-4 border-stone-200">
+            <span className="text-xs font-mono font-bold text-[#C85A32] tracking-wider block">03 / ADAPTİF YENİDEN DÜZENLEME</span>
+            <h3 className="text-xl font-bold text-slate-900">Takılma ve Temposuzluk Tespiti</h3>
+            <p className="text-xs text-stone-600 leading-relaxed">
+              Birkaç gün aksattığınızda veya zorlandığınızda yapay zeka planı sıfırlamaz; adımları basitleştirip ritminizi korumanızı sağlar.
+            </p>
+          </Card>
+
+          <Card className="space-y-4 border-stone-200">
+            <span className="text-xs font-mono font-bold text-[#C85A32] tracking-wider block">04 / DOĞRULANMIŞ KAYNAKLAR</span>
+            <h3 className="text-xl font-bold text-slate-900">Hedefe Özel Video ve İçerik</h3>
+            <p className="text-xs text-stone-600 leading-relaxed">
+              Gitar için Ultimate Guitar, yazılım için MDN/Patika, dil için Duolingo/Tofugu gibi konunuza %100 özel doğrulanmış kaynaklar.
+            </p>
+          </Card>
+        </div>
+
+        {/* Live Focus Timer Showcase Widget */}
+        <div className="pt-4 max-w-xl mx-auto">
+          <FocusTimerWidget taskTitle="Örnek Görev: 25 Dakikalık Odak Seansı" defaultMinutes={25} />
+        </div>
+      </section>
+
+
+
+      {/* Ready-to-use Popular Templates Quick Picker */}
       <section className="max-w-5xl mx-auto px-4 space-y-6">
         <div className="text-center space-y-2">
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#241E2B]">Popüler Şablonlarla Başlayın</h2>
-          <p className="text-xs text-[#766F82]">Tek tıkla hazır rotanızı ve eylem planınızı başlatabilirsiniz</p>
+          <h2 className="text-2xl font-bold text-slate-900">Popüler Şablonlarla Hemen Başlayın</h2>
+          <p className="text-xs text-stone-600">Tek tıkla hazır rotanızı oluşturabilirsiniz</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div
-            onClick={() => onStartGoalWithTemplate ? onStartGoalWithTemplate('Gitar Başlangıcı', 'coding_project', 'beginner') : onStartGoal()}
-            className="p-5 rounded-2xl border border-[#E5DFDA] bg-white hover:border-[#C85A32] cursor-pointer transition-all space-y-2 group"
-          >
+          <Card hoverable onClick={onStartGoal} className="space-y-2 border-stone-200 text-left group">
             <span className="text-[10px] font-bold text-[#C85A32] bg-[#C85A32]/10 px-2 py-0.5 rounded-full inline-block">MÜZİK & DERS</span>
-            <h4 className="font-bold text-sm text-[#241E2B] group-hover:text-[#C85A32] transition-colors">Gitar Başlangıcı</h4>
-            <p className="text-[11px] text-[#766F82] line-clamp-2">1 Haftada Temel Akorlar, Ritim Kalıpları ve İlk Şarkı Çalma</p>
-          </div>
+            <h4 className="font-bold text-sm text-slate-900 group-hover:text-[#C85A32] transition-colors">Gitar Başlangıcı</h4>
+            <p className="text-[11px] text-stone-500 line-clamp-2">1 Haftada Temel Akorlar, Ritim Kalıpları ve İlk Şarkı Çalma</p>
+          </Card>
 
-          <div
-            onClick={() => onStartGoalWithTemplate ? onStartGoalWithTemplate('Seyahat Japoncası', 'language_learning', 'beginner') : onStartGoal()}
-            className="p-5 rounded-2xl border border-[#E5DFDA] bg-white hover:border-[#C85A32] cursor-pointer transition-all space-y-2 group"
-          >
+          <Card hoverable onClick={onStartGoal} className="space-y-2 border-stone-200 text-left group">
             <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full inline-block">DİL ÖĞRENİMİ</span>
-            <h4 className="font-bold text-sm text-[#241E2B] group-hover:text-[#C85A32] transition-colors">Seyahat Japoncası</h4>
-            <p className="text-[11px] text-[#766F82] line-clamp-2">Hiragana/Katakana Temeli ve Günlük Konuşma Cümleleri</p>
-          </div>
+            <h4 className="font-bold text-sm text-slate-900 group-hover:text-[#C85A32] transition-colors">Seyahat Japoncası</h4>
+            <p className="text-[11px] text-stone-500 line-clamp-2">Hiragana/Katakana Temeli ve Günlük Konuşma Cümleleri</p>
+          </Card>
 
-          <div
-            onClick={() => onStartGoalWithTemplate ? onStartGoalWithTemplate('React ve Tailwind Uygulaması', 'coding_project', 'intermediate') : onStartGoal()}
-            className="p-5 rounded-2xl border border-[#E5DFDA] bg-white hover:border-[#C85A32] cursor-pointer transition-all space-y-2 group"
-          >
+          <Card hoverable onClick={onStartGoal} className="space-y-2 border-stone-200 text-left group">
             <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block">YAZILIM</span>
-            <h4 className="font-bold text-sm text-[#241E2B] group-hover:text-[#C85A32] transition-colors">React & Tailwind App</h4>
-            <p className="text-[11px] text-[#766F82] line-clamp-2">Sıfırdan Vite+React Uygulaması Geliştirip Vercel'de Yayınlama</p>
-          </div>
+            <h4 className="font-bold text-sm text-slate-900 group-hover:text-[#C85A32] transition-colors">React & Tailwind App</h4>
+            <p className="text-[11px] text-stone-500 line-clamp-2">Sıfırdan Vite+React Uygulaması Geliştirip Vercel'de Yayınlama</p>
+          </Card>
 
-          <div
-            onClick={() => onStartGoalWithTemplate ? onStartGoalWithTemplate('YKS Sayısal Tekrar', 'exam_study', 'intermediate') : onStartGoal()}
-            className="p-5 rounded-2xl border border-[#E5DFDA] bg-white hover:border-[#C85A32] cursor-pointer transition-all space-y-2 group"
-          >
+          <Card hoverable onClick={onStartGoal} className="space-y-2 border-stone-200 text-left group">
             <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full inline-block">SINAV HAZIRLIĞI</span>
-            <h4 className="font-bold text-sm text-[#241E2B] group-hover:text-[#C85A32] transition-colors">YKS Sayısal Tekrar</h4>
-            <p className="text-[11px] text-[#766F82] line-clamp-2">Biyoloji ve Matematik Konu Özetleri & Çıkmış Soru Analizleri</p>
-          </div>
+            <h4 className="font-bold text-sm text-slate-900 group-hover:text-[#C85A32] transition-colors">YKS Sayısal Tekrar</h4>
+            <p className="text-[11px] text-stone-500 line-clamp-2">Biyoloji ve Matematik Konu Özetleri & Çıkmış Soru Analizleri</p>
+          </Card>
         </div>
       </section>
 
-      {/* 6. SECURITY & MVP NOTICE */}
+      {/* Safety Notice Disclaimer */}
       <section className="max-w-3xl mx-auto px-4">
-        <div className="bg-[#F6E7DF] border border-[#C85A32]/30 rounded-2xl p-4 flex items-start gap-3 text-xs text-[#C85A32]">
-          <Lock className="w-5 h-5 shrink-0 mt-0.5" />
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start gap-3 text-xs text-amber-900">
+          <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
           <div>
-            <strong className="font-bold block mb-0.5">Güvenlik & Mimari Bildirimi:</strong>
-            API anahtarları istemci tarafında sızdırılmaz; tüm AI çağrıları Vercel Serverless proxy katmanı üzerinden gerçekleştirilir. AdımAI eğitim, yazılım ve dil hedeflerinde rehberlik sunar.
+            <span className="font-bold">Önemli Güvenlik Bildirimi:</span> AdımAI yalnızca eğitim, yazılım ve dil hedeflerinde rehberlik sunar. Tıbbi, hukuki, finansal veya psikolojik konularda tavsiye verilmez.
           </div>
         </div>
-      </section>
-
-      {/* 7. FINAL CTA */}
-      <section className="max-w-4xl mx-auto text-center space-y-6 px-4 pt-6">
-        <h2 className="font-serif text-4xl sm:text-6xl text-[#241E2B]">
-          İlk Adımınızı Bugün Atın
-        </h2>
-        <p className="text-sm sm:text-base text-[#766F82] max-w-xl mx-auto">
-          İster yeni bir dil öğrenin, ister bir yazılım projesini bitirin. AdımAI rotanızı 2 dakika içinde çıkarır.
-        </p>
-        <button
-          onClick={onStartGoal}
-          className="min-h-12 px-8 rounded-xl font-extrabold text-base text-white bg-[#C85A32] hover:bg-[#E06438] transition-all shadow-lg hover:-translate-y-0.5"
-        >
-          Ücretsiz Planımı Oluştur &rarr;
-        </button>
       </section>
     </div>
   );
 };
+

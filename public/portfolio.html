@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdımAI | Erkan Efe - Portfolio Case Study</title>
+  <meta name="description" content="AdımAI, hedefleri gerçekçi mikro adımlara dönüştüren adaptif AI rehberi. Erkan Efe'nin proje portföyü." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --paper: oklch(97% .012 84);
+      --paper-2: oklch(94% .018 84);
+      --ink: oklch(21% .022 278);
+      --muted: oklch(53% .028 278);
+      --line: oklch(84% .025 84);
+      --orange: oklch(63% .17 45);
+      --orange-deep: oklch(47% .16 43);
+      --orange-soft: oklch(90% .065 65);
+      --indigo: oklch(31% .095 278);
+      --indigo-2: oklch(39% .10 278);
+      --mint: oklch(83% .10 155);
+      --white-tint: oklch(99% .006 84);
+      --shadow-sm: 0 8px 24px oklch(24% .03 278 / .08);
+      --shadow-md: 0 22px 60px oklch(24% .03 278 / .13);
+      --ease: cubic-bezier(.16,1,.3,1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    h1,h2,h3,p { margin: 0; }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+    .topbar { position: sticky; top: 0; z-index: 20; height: 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid oklch(84% .025 84 / .72); background: oklch(97% .012 84 / .9); backdrop-filter: blur(12px); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.03em; }
+    .brand-mark { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; color: var(--paper); background: var(--indigo); }
+    .brand small { display: block; color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: 4px; }
+    .nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 9px; color: var(--muted); font-size: 14px; font-weight: 600; }
+    .nav a:hover { color: var(--ink); background: var(--paper-2); }
+    .nav .nav-cta { color: var(--paper); background: var(--orange-deep); }
+    .nav .nav-cta:hover { color: var(--paper); background: var(--orange); }
+    .hero { padding: 86px 0 72px; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(310px,.8fr); gap: 70px; align-items: end; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--orange-deep); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .eyebrow i { width: 7px; height: 7px; display: inline-block; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px var(--orange-soft); }
+    .hero h1 { max-width: 760px; margin-top: 20px; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(58px, 8vw, 106px); line-height: .9; font-weight: 400; }
+    .hero h1 em { color: var(--orange-deep); }
+    .hero-lead { max-width: 640px; margin-top: 28px; color: var(--muted); font-size: 19px; line-height: 1.55; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 17px; border: 1px solid transparent; border-radius: 9px; cursor: pointer; font-size: 14px; font-weight: 700; }
+    .button-primary { color: var(--paper); background: var(--indigo); }
+    .button-primary:hover { background: var(--indigo-2); }
+    .button-quiet { color: var(--ink); border-color: var(--line); background: transparent; }
+    .hero-meta { display: flex; gap: 18px; margin-top: 38px; color: var(--muted); font-size: 13px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .project-note { position: relative; padding: 26px; color: var(--paper); background: var(--indigo); border-radius: 14px; box-shadow: var(--shadow-md); overflow: hidden; }
+    .note-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 22px; border-bottom: 1px solid oklch(90% .03 84 / .18); }
+    .note-label { color: oklch(89% .05 83); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mint); }
+    .note-title { max-width: 290px; margin: 34px 0 48px; font-family: 'Instrument Serif', Georgia, serif; font-size: 38px; line-height: .98; }
+    .note-title em { color: oklch(78% .10 52); }
+    .note-row { display: flex; justify-content: space-between; padding: 11px 0; border-top: 1px solid oklch(90% .03 84 / .16); color: oklch(89% .025 84); font-size: 13px; }
+    .note-row strong { color: var(--paper); font-weight: 600; }
+    .section { padding: 88px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 38px; }
+    .section-kicker { margin-bottom: 10px; color: var(--orange-deep); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .section h2 { max-width: 680px; font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(40px, 5vw, 66px); line-height: .96; font-weight: 400; }
+    .section-intro { max-width: 390px; color: var(--muted); font-size: 15px; }
+    .feature-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; }
+    .feature-rail { display: grid; gap: 10px; align-content: start; }
+    .filter { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 18px; border: 1px solid var(--line); border-radius: 11px; color: var(--muted); background: transparent; text-align: left; cursor: pointer; }
+    .filter.active { color: var(--paper); background: var(--orange-deep); border-color: var(--orange-deep); }
+    .filter-copy { display: flex; align-items: center; gap: 13px; }
+    .filter-num { font-family: 'Instrument Serif', serif; font-size: 25px; line-height: 1; }
+    .filter strong { display: block; font-size: 15px; }
+    .filter small { display: block; margin-top: 2px; font-size: 12px; opacity: .76; }
+    .feature-detail { min-height: 340px; display: flex; flex-direction: column; justify-content: space-between; padding: 34px; border-radius: 14px; color: var(--paper); background: var(--indigo); box-shadow: var(--shadow-sm); }
+    .detail-icon { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid oklch(90% .03 84 / .25); border-radius: 12px; color: oklch(88% .06 68); }
+    .feature-detail h3 { max-width: 550px; margin-top: 40px; font-size: 28px; line-height: 1.12; }
+    .feature-detail p { max-width: 590px; margin-top: 12px; color: oklch(88% .024 84); font-size: 15px; }
+    .detail-footer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+    .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border: 1px solid oklch(90% .03 84 / .25); border-radius: 99px; color: oklch(89% .05 83); font-size: 12px; }
+    .dark-band { color: var(--paper); background: var(--indigo); }
+    .architecture { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
+    .arch-copy { color: oklch(82% .025 84); }
+    .arch-board { padding: 22px; border: 1px solid oklch(90% .03 84 / .19); border-radius: 14px; background: oklch(24% .065 278); }
+    .arch-node { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 18px; border: 1px solid oklch(90% .03 84 / .18); border-radius: 10px; background: oklch(29% .075 278); }
+    .arch-node + .arch-node { margin-top: 34px; }
+    .arch-node strong { display: block; font-size: 14px; }
+    .arch-node small { display: block; margin-top: 2px; color: oklch(78% .025 84); font-size: 12px; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+    .stack-pill { padding: 8px 11px; border: 1px solid oklch(90% .03 84 / .22); border-radius: 7px; color: oklch(88% .03 84); font-size: 12px; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .timeline-item { min-height: 220px; padding: 24px 22px 0 0; border-right: 1px solid var(--line); }
+    .timeline-item:not(:first-child) { padding-left: 22px; }
+    .timeline-item:last-child { border-right: 0; }
+    .timeline-num { color: var(--orange-deep); font-family: 'Instrument Serif', serif; font-size: 35px; }
+    .timeline-item h3 { margin-top: 26px; font-size: 18px; }
+    .timeline-item p { margin-top: 10px; max-width: 220px; color: var(--muted); font-size: 14px; }
+    .demo-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+    .demo-main { min-height: 350px; display: flex; flex-direction: column; justify-content: space-between; padding: 30px; color: var(--paper); background: var(--orange-deep); border-radius: 14px; }
+    .demo-main h3 { max-width: 560px; margin-top: 58px; font-family: 'Instrument Serif', serif; font-size: 48px; line-height: .96; font-weight: 400; }
+    .demo-main p { max-width: 500px; margin-top: 12px; color: oklch(93% .035 75); }
+    .demo-main .button { width: fit-content; margin-top: 28px; color: var(--indigo); background: var(--paper); }
+    .demo-side { padding: 26px; border: 1px solid var(--line); background: var(--white-tint); border-radius: 14px; }
+    .metric { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 15px 0; border-top: 1px solid var(--line); font-size: 14px; }
+    .metric b { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; }
+    .cv-strip { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--orange-soft); }
+    .cv-strip p { max-width: 720px; margin-top: 8px; color: var(--orange-deep); font-size: 15px; }
+    .footer { padding: 38px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 13px; }
+    .footer-links { display: flex; gap: 18px; }
+    .toast { position: fixed; right: 22px; bottom: 22px; z-index: 50; padding: 13px 16px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--white-tint); box-shadow: var(--shadow-md); font-size: 13px; opacity: 0; transform: translateY(14px); transition: opacity .25s ease, transform .25s ease; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 850px) {
+      .hero, .feature-layout, .architecture, .demo-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+      <a class="brand" href="/" aria-label="AdımAI ana sayfa">
+        <span class="brand-mark"><i data-lucide="footprints"></i></span>
+        <span>AdımAI<small>Project case study</small></span>
+      </a>
+      <nav class="nav">
+        <a href="#story">Hikâye</a>
+        <a href="#system">Sistem</a>
+        <a href="#build">Süreç</a>
+        <a class="nav-cta" href="https://adim-ai.vercel.app/" target="_blank">Canlı demoyu aç <i data-lucide="arrow-up-right" style="width:15px;height:15px"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
+      <div>
+        <div class="eyebrow"><span class="eyebrow i"></span> Erkan Efe · bağımsız proje</div>
+        <h1>Büyük hedefleri <em>başlanabilir</em> hale getirdim.</h1>
+        <p class="hero-lead">AdımAI, belirsiz hedefleri gerçekçi süre tahminlerine, günlük mikro görevlere ve ilerleme kanıtına dönüştüren adaptif bir AI rehberidir.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://adim-ai.vercel.app/" target="_blank">Canlı ürünü dene <i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></a>
+          <a class="button button-quiet" href="https://github.com/Laplace158/adim-ai" target="_blank">GitHub reposu <i data-lucide="github" style="width:17px;height:17px"></i></a>
+        </div>
+        <div class="hero-meta">
+          <span><i data-lucide="calendar-days" style="width:15px;height:15px"></i> 2026 · v2.0 MVP</span>
+          <span><i data-lucide="code-2" style="width:15px;height:15px"></i> React · TypeScript · Vite</span>
+          <span><i data-lucide="shield-check" style="width:15px;height:15px"></i> Server-side proxy</span>
+        </div>
+      </div>
+      <aside class="project-note">
+        <div class="note-top"><span class="note-label">Project snapshot</span><span class="status-dot"></span></div>
+        <div class="note-title">Chatbot değil. <em>Hedef sistemi.</em></div>
+        <div class="note-row"><span>Girdi</span><strong>Doğal dil hedefi</strong></div>
+        <div class="note-row"><span>Motor</span><strong>AI + süre algoritması</strong></div>
+        <div class="note-row"><span>Çıktı</span><strong>Günlük görev + kanıt</strong></div>
+      </aside>
+    </section>
+
+    <section id="story" class="section shell">
+      <div class="section-head">
+        <div><div class="section-kicker">01 · Ürün fikri</div><h2>Bir hedefi yazmak kolay. Başlamak zor.</h2></div>
+        <p class="section-intro">AdımAI'nin odağı daha fazla özellik değil, kullanıcıyı bugünün tek doğru adımına ulaştırmak.</p>
+      </div>
+      <div class="feature-layout">
+        <div class="feature-rail">
+          <button class="filter active" data-feature="0"><span class="filter-copy"><span class="filter-num">01</span><span><strong>Akıllı bölümleme</strong><small>Büyük hedefi küçültür</small></span></span><i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></button>
+          <button class="filter" data-feature="1"><span class="filter-copy"><span class="filter-num">02</span><span><strong>Gerçekçi süre motoru</strong><small>Tahmini uydurmaz</small></span></span><i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></button>
+          <button class="filter" data-feature="2"><span class="filter-copy"><span class="filter-num">03</span><span><strong>Adaptif check-in</strong><small>Rota geride kalmaz</small></span></span><i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></button>
+          <button class="filter" data-feature="3"><span class="filter-copy"><span class="filter-num">04</span><span><strong>Hedef kanıtı</strong><small>İlerleme görünür olur</small></span></span><i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></button>
+        </div>
+        <div class="feature-detail" id="feature-detail">
+          <div><div class="detail-icon"><i data-lucide="split"></i></div><h3 id="feature-title">Büyük hedefi günlük bir sonraki adıma indirir.</h3><p id="feature-text">Kullanıcı “İngilizce öğrenmek istiyorum” dediğinde uygulama bunu ölçülebilir bir sonuca, süre aralığına ve bugün tamamlanabilecek tek bir göreve dönüştürür.</p></div>
+          <div class="detail-footer" id="feature-tags"><span class="tag">Natural language input</span><span class="tag">Micro tasks</span><span class="tag">First-week plan</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="system" class="section dark-band">
+      <div class="shell architecture">
+        <div>
+          <div class="section-kicker">02 · Sistem tasarımı</div>
+          <h2>AI içerik üretir. Ürün karar verir.</h2>
+          <p class="arch-copy" style="max-width:500px;margin-top:22px">AdımAI'nin güçlü tarafı yalnızca Gemini çağırmak değil. Hedef analizi, matematiksel süre tahmini, LocalStorage durumu ve server-side güvenlik katmanı birlikte çalışır.</p>
+          <div class="stack-row"><span class="stack-pill">React 18</span><span class="stack-pill">TypeScript</span><span class="stack-pill">Vite</span><span class="stack-pill">Vercel Functions</span><span class="stack-pill">Gemini Flash</span></div>
+        </div>
+        <div class="arch-board">
+          <div class="arch-node"><span><strong>Client browser / PWA</strong><small>React + Vite arayüzü</small></span><i data-lucide="monitor-smartphone"></i></div>
+          <div class="arch-node"><span><strong>Vercel Serverless Proxy</strong><small>Gizli API anahtarı, server-side çağrı</small></span><i data-lucide="server"></i></div>
+          <div class="arch-node"><span><strong>Gemini Flash</strong><small>Structured goal & task output</small></span><i data-lucide="brain-circuit"></i></div>
+          <div class="arch-node"><span><strong>Progress engine</strong><small>LocalStorage, check-in, fallback</small></span><i data-lucide="chart-no-axes-combined"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" class="section shell">
+      <div class="section-head"><div><div class="section-kicker">03 · İnşa süreci</div><h2>Fikri ürüne çevirirken öğrendiklerim.</h2></div><p class="section-intro">Bu proje, AI ile kod üretmekten çok, AI çıktısını güvenilir bir ürüne bağlama egzersiziydi.</p></div>
+      <div class="timeline">
+        <article class="timeline-item"><div class="timeline-num">01</div><h3>Problemi daralttım</h3><p>“Her hedef” iddiasını, ilk sürümde öğrenme, kodlama ve sınav rotalarına indirdim.</p></article>
+        <article class="timeline-item"><div class="timeline-num">02</div><h3>Akışı tasarladım</h3><p>Hedef, tanı testi, plan, günlük görev ve check-in zincirini tek deneyimde birleştirdim.</p></article>
+        <article class="timeline-item"><div class="timeline-num">03</div><h3>Güvenliği düzelttim</h3><p>API anahtarını frontend bundle'dan çıkarıp Vercel serverless proxy katmanına taşıdım.</p></article>
+        <article class="timeline-item"><div class="timeline-num">04</div><h3>Sınırlamayı belgeledim</h3><p>LocalStorage tabanlı MVP yapısını, Supabase entegrasyonu için hazır mimariyle açıkça anlattım.</p></article>
+      </div>
+    </section>
+
+    <section class="section shell" style="padding-top:20px">
+      <div class="demo-grid">
+        <div class="demo-main"><div><div class="eyebrow"><span class="eyebrow i"></span> Canlı deneyim</div><h3>Bir hedef yaz. İlk haftanın rotasını gör.</h3><p>Plan, kaynaklar, Pomodoro odaklayıcı ve adaptif check-in aynı akışta.</p></div><a class="button" href="https://adim-ai.vercel.app/" target="_blank">AdımAI'yi aç <i data-lucide="arrow-up-right" style="width:17px;height:17px"></i></a></div>
+        <div class="demo-side"><h3>Portföyde neyi kanıtlıyor?</h3><div class="metric-list"><div class="metric"><span>Ürün düşüncesi</span><b>01</b></div><div class="metric"><span>AI entegrasyonu</span><b>02</b></div><div class="metric"><span>Frontend mimarisi</span><b>03</b></div><div class="metric"><span>Deploy & dokümantasyon</span><b>04</b></div></div></div>
+      </div>
+    </section>
+
+    <section class="section shell" style="padding-top:0">
+      <div class="cv-strip"><div><h3>CV için hazır cümle</h3><p id="cv-text">Built and deployed AdımAI, an adaptive AI goal-planning PWA with Gemini integration, mathematical duration estimation, curated resources, Pomodoro focus mode and adaptive check-ins using React, TypeScript and Vite.</p></div><button class="button button-primary" id="copy-cv"><i data-lucide="copy" style="width:16px;height:16px"></i> Cümleyi kopyala</button></div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="shell footer-inner"><span>© 2026 Erkan Efe · AdımAI case study</span><div class="footer-links"><a href="https://github.com/Laplace158/adim-ai" target="_blank">GitHub</a><a href="https://adim-ai.vercel.app/" target="_blank">Live demo</a><a href="mailto:sorryelvator@gmail.com">Contact</a></div></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">CV cümlesi panoya kopyalandı.</div>
+
+  <script>
+    const features = [
+      { icon: 'split', title: 'Büyük hedefi günlük bir sonraki adıma indirir.', text: 'Kullanıcı “İngilizce öğrenmek istiyorum” dediğinde uygulama bunu ölçülebilir bir sonuca, süre aralığına ve bugün tamamlanabilecek tek bir göreve dönüştürür.', tags: ['Natural language input', 'Micro tasks', 'First-week plan'] },
+      { icon: 'calculator', title: 'Süreyi hisle değil, kapasiteyle hesaplar.', text: 'Günlük dakika, haftalık devamlılık ve hedef kapsamı bir araya gelir. Sistem tek bir sihirli sayı yerine varsayımlı bir minimum ve maksimum aralık üretir.', tags: ['Duration engine', 'Assumptions', 'Range estimate'] },
+      { icon: 'refresh-cw', title: 'Kullanıcı geride kalınca planı küçültür.', text: '“Zorlandım”, “vaktim yoktu” ve “çok kolaydı” check-in’leri planı bozmadan rotayı yeniden ayarlar. Kullanıcıyı suçlamaz, bir sonraki uygulanabilir adımı bulur.', tags: ['Adaptive check-in', 'Fallback mode', 'Progress state'] },
+      { icon: 'badge-check', title: 'İlerlemeyi bir hedef kanıtına dönüştürür.', text: 'Proje bağlantısı, kelime ustalık raporu, mini test sonucu veya çalışma günlüğü. CV çıktısı isteğe bağlı, gerçek ilerleme her zaman görünür.', tags: ['Evidence', 'Portfolio output', 'Optional CV bullet'] }
+    ];
+    const title = document.getElementById('feature-title');
+    const text = document.getElementById('feature-text');
+    const tags = document.getElementById('feature-tags');
+    const detailIcon = document.querySelector('.detail-icon');
+    document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
+      const item = features[Number(btn.dataset.feature)];
+      document.querySelectorAll('.filter').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      detailIcon.innerHTML = '<i data-lucide="' + item.icon + '"></i>';
+      title.textContent = item.title; text.textContent = item.text;
+      tags.innerHTML = item.tags.map(t => '<span class="tag">' + t + '</span>').join('');
+      if (window.lucide) lucide.createIcons();
+    }));
+    document.getElementById('copy-cv').addEventListener('click', async () => {
+      const value = document.getElementById('cv-text').textContent;
+      try { await navigator.clipboard.writeText(value); } catch (e) { const area = document.createElement('textarea'); area.value = value; document.body.appendChild(area); area.select(); document.execCommand('copy'); area.remove(); }
+      const toast = document.getElementById('toast'); toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2400);
+    });
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>

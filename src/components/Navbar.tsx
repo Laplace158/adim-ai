@@ -1,13 +1,11 @@
 import React from 'react';
-import { Target, FolderKanban, LogOut, Sparkles, BookOpen } from 'lucide-react';
+import { Target, FolderKanban, User, LogOut, Sparkles } from 'lucide-react';
 import { Button } from './ui/Button';
 
-export type StepType = 'landing' | 'wizard' | 'preview' | 'diagnostic' | 'dashboard' | 'evidence' | 'my_plans' | 'portfolio';
-
 interface NavbarProps {
-  currentStep: StepType;
+  currentStep: 'landing' | 'wizard' | 'preview' | 'diagnostic' | 'dashboard' | 'evidence' | 'my_plans' | 'portfolio';
   user: { id: string; name: string; email: string } | null;
-  onNavigate: (step: StepType) => void;
+  onNavigate: (step: 'landing' | 'wizard' | 'preview' | 'diagnostic' | 'dashboard' | 'evidence' | 'my_plans' | 'portfolio') => void;
   onOpenAuthModal: () => void;
   onLogout: () => void;
 }
@@ -20,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onLogout
 }) => {
   return (
-    <header className="bg-[#F9F8F6]/90 border-b border-[#E5DFDA] sticky top-0 z-20 backdrop-blur-md">
+    <header className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-xs">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Brand Logo */}
         <div 
@@ -33,34 +31,50 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="w-9 h-9 object-contain group-hover:scale-105 transition-transform" 
           />
           <div className="flex flex-col">
-            <span className="font-bold text-xl tracking-tight text-[#241E2B] leading-none">
+            <span className="font-bold text-xl tracking-tight text-slate-900 leading-none">
               Adım<span className="text-[#C85A32]">AI</span>
             </span>
-            <span className="text-[10px] font-semibold text-[#766F82] tracking-wider uppercase mt-0.5">
+            <span className="text-[10px] font-medium text-slate-500 tracking-wider uppercase mt-0.5">
               Kişisel Hedef Rehberi
             </span>
           </div>
         </div>
 
-        {/* Navigation Links */}
+        {/* Navigation */}
         <nav className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-semibold">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+            <span>Gemini AI (Canlı)</span>
+          </div>
+
           <button
             onClick={() => onNavigate('landing')}
-            className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
               currentStep === 'landing' 
-                ? 'bg-[#1E2338] text-white' 
-                : 'text-[#766F82] hover:text-[#241E2B] hover:bg-[#F3F0EC]'
+                ? 'bg-slate-100 text-slate-900 font-semibold' 
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
             Ana Sayfa
           </button>
 
           <button
+            onClick={() => onNavigate('portfolio')}
+            className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors ${
+              currentStep === 'portfolio' 
+                ? 'bg-[#3B4274] text-white font-bold' 
+                : 'text-[#3B4274] hover:bg-[#3B4274]/10'
+            }`}
+          >
+            Portföy / Case Study
+          </button>
+
+          <button
             onClick={() => onNavigate('my_plans')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium transition-colors ${
               currentStep === 'my_plans' 
-                ? 'bg-[#1E2338] text-white' 
-                : 'text-[#766F82] hover:text-[#241E2B] hover:bg-[#F3F0EC]'
+                ? 'bg-stone-100 text-slate-900 font-semibold' 
+                : 'text-slate-600 hover:text-slate-900 hover:bg-stone-50'
             }`}
           >
             <FolderKanban className="w-4 h-4 text-[#C85A32]" />
@@ -81,20 +95,21 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* User auth state button */}
           {user ? (
-            <div className="flex items-center gap-2 pl-2 border-l border-[#E5DFDA]">
-              <span className="text-xs font-bold text-[#241E2B] hidden sm:inline">
+            <div className="flex items-center gap-2 pl-2 border-l border-stone-200">
+              <span className="text-xs font-bold text-slate-800 hidden sm:inline">
                 {user.name}
               </span>
               <button
                 onClick={onLogout}
                 title="Çıkış Yap"
-                className="p-1.5 text-[#766F82] hover:text-rose-600 rounded-lg hover:bg-[#F3F0EC]"
+                className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-stone-100"
               >
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
           ) : (
             <Button variant="outline" size="sm" onClick={onOpenAuthModal} className="text-xs">
+              <User className="w-3.5 h-3.5 mr-1 text-[#C85A32]" />
               Giriş Yap
             </Button>
           )}

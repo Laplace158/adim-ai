@@ -35,7 +35,7 @@ export const MyPlansView: React.FC<MyPlansViewProps> = ({
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
         <div>
           <Badge variant="blue">Kayıtlı Çalışma Paneli</Badge>
-          <h2 className="font-serif text-4xl font-normal text-[#241E2B] tracking-tight mt-1">
+          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight mt-1">
             Kayıtlı Planlarım
           </h2>
           <p className="text-xs text-slate-500">
