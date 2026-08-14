@@ -57,14 +57,13 @@ KULLANICI BİLGİLERİ:
 - Sadece Ücretsiz Kaynaklar: ${input.preferFreeResources ? 'Evet' : 'Hayır'}
 
 ÖNEMLİ DEĞERLENDİRME VE ADAPTASYON KURALLARI:
-1. CÜMLE ANALİZİ: Kullanıcı cümlesini harfiyen incele!
+1. CÜMLE VE ARAÇ ANALİZİ: Kullanıcının yazdığı cümleyi harfiyen oku ve niyetini kavra!
+   - Kullanıcı 'Yazılım' kategorisini seçmiş olsa dahi; cümlesinde "unreal engine", "unity", "game dev", "blender", "python", "flutter", "c++", "photoshop", "gitar", "piyano" gibi SPESİFİK BİR OYUN MOTORU, DİL VEYA ARAÇ geçiyorsa; GÖREVLERİ, KİLOMETRE TAŞLARINI VE ÖNERİLERİ %100 O OYUN MOTORUNA / ARACA ÖZEL OLUŞTUR (Örn. Unreal Engine için: Blueprint mantığı, 3D Viewport & Actors, Character Control, Collisions, Level Design, Packaging). ASLA JENERİK VİTE / REACT / WEB ŞABLONLARI KULLANMA.
    - Eğer cümle belirsizse (örn: "dil öğrenmek istiyorum ama hangi dil bilmiyorum", "yazılım öğrenmek istiyorum" vb.):
      "isOriginalGoalRealistic": false işaretle.
      "explanation": Chatbot gibi kullanıcıya empati kurarak yol göster. Dil seçimi/teknoloji seçimi konusunda kılavuzluk yapacağını belirt.
      "alternativeGoal": Kullanıcının belirsizliğini netleştiren somut bir başlık yaz (örn: "7 Günde Dil Seçimi ve Temel İngilizce Başlangıcı").
      GÖREVLER: 1. Gün dil/teknoloji seçimi ve hedef analizi, 2. Gün temel selamlaşma/kurulum, 3. Gün en sık kullanılan yapılardan başlamalı.
-   - Eğer cümle spesifikse (örn: "Python ile pandas veri analizi botu", "Almanca A2 konuşma", "YKS Biyoloji Sistemler"):
-     Görevleri TAMAMEN ve SADECE bu spesifik konunun adım adım pratik uygulamalarına ayır. Jenerik şablon KULLANMA.
 2. SEVİYE UYUMU: Kullanıcı "${input.currentLevel}" seviyesindedir. Görev zorluklarını bu seviyeye göre ölçekle.
 3. HER GÜN İÇİN ÜCRETSİZ TÜRKÇE/GLOBAL KAYNAK URL'Sİ ÖNER (BTK Akademi, YouTube, MDN, Khan Academy, Duolingo, Python.org vb.).
 4. ÖNEMLİ KİLOMETRE TAŞLARI (milestones): "milestones" dizisindeki 7. Gün, 14. Gün ve 30. Gün kilometre taşları TAMAMEN KULLANICININ HEDEFİNE ÖZEL (Örn. Gitar için "Temel Akorlar & Ritim Uyumu", Photoshop için "Katman & Maskeleme Yetkinliği", Piyano için "Çift El Koordinasyonu") VE SPESİFİK OLMALIDIR. ASLA "50 kelime veya komut paneli" gibi varsayılan jenerik metinler KULLANMA.

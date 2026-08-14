@@ -24,8 +24,24 @@ export const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   const getResources = () => {
     const topic = (task.title + ' ' + goalTitle).toLowerCase();
 
-    // 0. Photoshop / Graphic Design / Visual Arts
-    if (topic.includes('photoshop') || topic.includes('ps') || topic.includes('tasarım') || topic.includes('görsel') || topic.includes('grafik') || topic.includes('figma') || topic.includes('blender') || topic.includes('illüstratör') || topic.includes('fotoğraf') || topic.includes('retouch')) {
+    // 0. Unreal Engine / Game Development
+    if (topic.includes('unreal') || topic.includes('unrael') || topic.includes('unity') || topic.includes('oyun') || topic.includes('game') || topic.includes('blueprint') || topic.includes('godot')) {
+      return {
+        youtubeVideos: [
+          { title: `${task.title} — Unreal Engine 5 Başlangıç Eğitimi`, channel: 'Unreal Engine TR / Game Dev Atölyesi', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' unreal engine 5 dersi') },
+          { title: `Blueprint Visual Scripting & Uygulama: ${task.title}`, channel: 'Oyun Geliştirme Rehberi', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' blueprint tutorial') }
+        ],
+        websites: [
+          { name: 'Epic Games Learning Portal & UE Docs', desc: 'Resmi Unreal Engine 5 dokümantasyonu ve Blueprint dersleri', rating: 5.0, url: 'https://dev.epicgames.com/community/unreal-engine/learning' },
+          { name: 'Unreal Engine Marketplace & Polycount Forum', desc: 'Ücretsiz 3D modeller, materyaller ve oyun geliştirici topluluğu', rating: 4.9, url: 'https://www.unrealengine.com/marketplace' }
+        ],
+        forumSummary: 'Oyun geliştirici toplulukları (Reddit r/unrealengine / Polycount): Blueprint nod yapısını kavrayıp Enhanced Input System kullanmak 3D oyun prototip süresini yarım günün altına indiriyor.',
+        rating: 4.9,
+        reviewsCount: 450
+      };
+    }
+    // 0.1 Photoshop / Graphic Design / Visual Arts
+    else if (topic.includes('photoshop') || topic.includes('ps') || topic.includes('tasarım') || topic.includes('görsel') || topic.includes('grafik') || topic.includes('figma') || topic.includes('blender') || topic.includes('illüstratör') || topic.includes('fotoğraf') || topic.includes('retouch')) {
       return {
         youtubeVideos: [
           { title: `${task.title} — Photoshop & Tasarım Eğitimi`, channel: 'Tasarım Kanalı TR / Adobe Eğitim', url: 'https://www.youtube.com/results?search_query=' + encodeURIComponent(task.title + ' photoshop dersi') },

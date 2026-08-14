@@ -26,7 +26,19 @@ export class MockAIProvider implements AIProvider {
 
     // Generate dynamic topic-tailored milestones
     let milestones = [];
-    if (lowerTitle.includes('gitar') || lowerTitle.includes('saz') || lowerTitle.includes('müzik') || lowerTitle.includes('akor')) {
+    if (lowerTitle.includes('unreal') || lowerTitle.includes('unrael') || lowerTitle.includes('unity') || lowerTitle.includes('oyun') || lowerTitle.includes('game')) {
+      milestones = [
+        { day: 7, title: '3D Viewport & Blueprint Temeli', successCriteria: '3D aktör yerleştirip nod bazlı Blueprint eventi bağlamak' },
+        { day: 14, title: 'Karakter Kontrolü & Fizik Kuralları', successCriteria: 'Karakter hareketini ve Trigger Box etkileşimlerini tamamlamak' },
+        { day: 30, title: 'Oynanabilir 3D Oyun Paketleme (EXE Build)', successCriteria: 'Oynanabilir Windows EXE mini 3D oyunu derleyip kaydetmek' }
+      ];
+    } else if (lowerTitle.includes('python') || lowerTitle.includes('pandas') || lowerTitle.includes('bot') || lowerTitle.includes('scraping') || lowerTitle.includes('veri')) {
+      milestones = [
+        { day: 7, title: 'Python Temelleri & Veri Yapıları', successCriteria: 'Döngüler, listeler ve fonksiyonlar ile konsol scripti yazmak' },
+        { day: 14, title: 'Otomasyon & Veri İşleme (Pandas/Requests)', successCriteria: 'Webden veri çekip JSON/Excel dosyasına kaydetmek' },
+        { day: 30, title: 'Canlı Bot / Script Portföyü', successCriteria: 'Çalışan otomasyon botunu GitHub repoda dokümante etmek' }
+      ];
+    } else if (lowerTitle.includes('gitar') || lowerTitle.includes('saz') || lowerTitle.includes('müzik') || lowerTitle.includes('akor')) {
       milestones = [
         { day: 7, title: 'Temel Akorlar & 4/4 Ritim', successCriteria: '3 temel akoru ve ritim kalıbını takılmadan çalmak' },
         { day: 14, title: 'Akor Geçişleri & Tab Okuma', successCriteria: '5 şarkının akor ve ritim eşliğini tamamlamak' },
@@ -236,6 +248,181 @@ export class MockAIProvider implements AIProvider {
           durationMinutes: input.dailyMinutes,
           difficulty: 3,
           successCriteria: 'Ses kaydını eksiksiz tamamlamak',
+          status: 'pending'
+        }
+      ];
+    } else if (
+      lowerTitle.includes('unreal') || 
+      lowerTitle.includes('unrael') || 
+      lowerTitle.includes('unity') || 
+      lowerTitle.includes('oyun') || 
+      lowerTitle.includes('game') || 
+      lowerTitle.includes('godot')
+    ) {
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: 'Unreal Engine 5 Kurulumu & 3D Viewport',
+          description: 'Epic Games Launcher üzerinden Unreal Engine 5 aç, 3D Viewport görünümünü, Move/Rotate/Scale araçlarını ve sahne gezintisini (WASD) dene.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Sahneye temel Küp ve Işık (Directional Light) yerleştirmek',
+          freeResourceUrl: 'https://dev.epicgames.com/community/unreal-engine/learning',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Aktörler (Actors) & Sahne Yerleşimi',
+          description: 'Static Mesh Aktörlerini incele, materyal (Material) atama ve zemin/duvar mimarisini oluştur.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Basit 3D oda tasarımı tamamlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: 'Blueprint Visual Scripting Mantığı',
+          description: 'Kod yazmadan nod bazlı Blueprint sistemine gir. Event BeginPlay, Event Tick ve Print String nodlarını bağla.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Ekrana Blueprint ile mesaj yazdırmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Karakter Kontrolü & Girdi (Enhanced Input)',
+          description: 'Third Person Character şablonunda klavye/fare hareket girdilerini incele, zıplama ve kamera açılarını ayarla.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Karakterin sahne içinde serbestçe hareket etmesini sağlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Fizik (Physics) & Çarpışma (Collisions)',
+          description: 'Trigger Box çarpanı ekle, karaktere yaklaştığında açılan otomatik kapı veya ışık yakma Blueprint\'i hazırla.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Trigger Box ile kapı açma mekaniği kodlamak',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'Materyaller & Lumen Işıklandırma',
+          description: 'PBR materyal parametrelerini (Base Color, Roughness, Metallic) bağla, Lumen dinamik ışıklandırmayı dene.',
+          taskType: 'learning_and_practice',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Gerçekçi kaplamalı ve ışıklı 3D ortam oluşturmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'Oyun Paketi Alma (Windows EXE Build)',
+          description: 'Projeni derle (Package Project -> Windows) ve bağımsız oynanabilir .exe oyun dosyasını oluştur.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Masaüstünde çalışan test oyun EXE çıktısını almak',
+          status: 'pending'
+        }
+      ];
+    } else if (
+      lowerTitle.includes('python') || 
+      lowerTitle.includes('pandas') || 
+      lowerTitle.includes('bot') || 
+      lowerTitle.includes('scraping') || 
+      lowerTitle.includes('veri')
+    ) {
+      tasks = [
+        {
+          id: 'task-1',
+          dayNumber: 1,
+          title: 'Python Kurulumu & IDE Hazırlığı',
+          description: 'Python 3.12 ve VS Code / PyCharm kurulumu yap, ilk `print("Hello Python")` scriptini çalıştır.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Python scriptini konsolda başarıyla çalıştırmak',
+          freeResourceUrl: 'https://www.python.org',
+          status: 'pending'
+        },
+        {
+          id: 'task-2',
+          dayNumber: 2,
+          title: 'Değişkenler, Veri Tipleri & Kontrol Yapıları',
+          description: 'String, Integer, List, Dict tiplerini ve `if-else` koşullu ifadelerini çalış.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'Koşullu karar yapısı içeren script yazmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-3',
+          dayNumber: 3,
+          title: 'Döngüler (For/While) & Fonksiyonlar',
+          description: 'Tekrarlayan işlemleri `for` döngüsü ile otomatize et, `def` ile kendi fonksiyonunu yaz.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'Parametre alan ve sonuç dönen 2 fonksiyon yazmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-4',
+          dayNumber: 4,
+          title: 'Dosya İşlemleri & JSON Veri Yapıları',
+          description: 'Python ile metin/JSON dosyası okuma ve yazma işlemlerini gerçekleştir.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 2,
+          successCriteria: 'JSON verisini okuyup dosyaya yazmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-5',
+          dayNumber: 5,
+          title: 'Requests & Web Scraper / Otomasyon',
+          description: '`pip install requests beautifulsoup4` ile web sayfasından veri çekme egzersizi yap.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Web sayfasından veri çekip konsola basmak',
+          status: 'pending'
+        },
+        {
+          id: 'task-6',
+          dayNumber: 6,
+          title: 'Otomasyon Scripti Geliştirme',
+          description: 'Çekilen verileri filtreleyip CSV/Excel formatında kaydeden otomasyon botunu tamamla.',
+          taskType: 'coding',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 3,
+          successCriteria: 'Çalışan otomasyon script çıktısı elde etmek',
+          status: 'pending'
+        },
+        {
+          id: 'task-7',
+          dayNumber: 7,
+          title: 'GitHub Reposu & Dokümantasyon',
+          description: 'Python scriptini GitHub üzerine yükle, requirements.txt ve README.md ekle.',
+          taskType: 'review',
+          durationMinutes: input.dailyMinutes,
+          difficulty: 1,
+          successCriteria: 'GitHub üzerinde kodları yayına almak',
           status: 'pending'
         }
       ];
