@@ -238,22 +238,6 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({ onBackToApp }) => 
           </div>
         </section>
 
-        {/* CV Copy Box */}
-        <section className="bg-amber-100/70 border border-amber-300/80 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <h3 className="font-bold text-slate-900 text-lg">CV İçin Hazır İngilizce İfade</h3>
-            <p className="text-xs sm:text-sm text-stone-700 font-mono">
-              "Built and deployed AdımAI, an adaptive AI goal-planning PWA with Gemini integration, mathematical duration estimation, curated resources, Pomodoro focus mode and adaptive check-ins using React, TypeScript and Vite."
-            </p>
-          </div>
-          <button
-            onClick={handleCopyCV}
-            className="shrink-0 px-4 py-2.5 rounded-xl bg-[#3B4274] hover:bg-[#2d335c] text-white text-xs font-bold flex items-center gap-2 shadow-sm transition-colors"
-          >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-            {copied ? 'Kopyalandı!' : 'Cümleyi Kopyala'}
-          </button>
-        </section>
       </main>
 
       <footer className="border-t border-stone-200 py-8 px-4 sm:px-8 text-xs text-stone-500">
