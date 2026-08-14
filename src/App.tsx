@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
+import { Navbar, StepType } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
 import { GoalWizard } from './components/GoalForm/GoalWizard';
 import { GoalAnalysisPreview } from './components/PlanOverview/GoalAnalysisPreview';
@@ -7,19 +7,18 @@ import { DiagnosticTestView } from './components/DiagnosticTest/DiagnosticTestVi
 import { PlanDashboard } from './components/PlanOverview/PlanDashboard';
 import { EvidencePage } from './components/Evidence/EvidencePage';
 import { MyPlansView } from './components/MyPlans/MyPlansView';
+import { PortfolioPage } from './components/Portfolio/PortfolioPage';
 import { AuthModal } from './components/Auth/AuthModal';
-import { GoalAnalysisResult, GoalInput, Plan, CheckinDifficulty, DiagnosticTest, Evidence } from './types';
+import { GoalAnalysisResult, GoalInput, Plan, CheckinDifficulty, DiagnosticTest, Evidence, GoalCategory } from './types';
 import { geminiAIProvider, getLastGenerationSource } from './services/ai/geminiProvider';
 import { storageService, StorageGoal } from './services/storageService';
 import { applyAdaptiveCheckinRules } from './utils/adaptiveRules';
 import { calculateNextMastery } from './utils/masteryCalculator';
 
-type Step = 'landing' | 'wizard' | 'preview' | 'diagnostic' | 'dashboard' | 'evidence' | 'my_plans';
-
 const LOCAL_STORAGE_USER_KEY = 'adimai_active_user_v1';
 
 export default function App() {
-  const [currentStep, setCurrentStep] = useState<Step>('landing');
+  const [currentStep, setCurrentStep] = useState<StepType>('landing');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<{ id: string; name: string; email: string } | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
@@ -91,6 +90,30 @@ export default function App() {
     }
     setCurrentStep('wizard');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleStartGoalWithTemplate = (
+    title: string, 
+    category: GoalCategory, 
+    level: 'beginner' | 'intermediate' | 'advanced'
+  ) => {
+    const input: GoalInput = {
+      title,
+      category,
+      currentLevel: level,
+      dailyMinutes: 30,
+      daysPerWeek: 5,
+      desiredOutcome: title,
+      preferFreeResources: true
+    };
+
+    if (!user) {
+      setGoalInput(input);
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    handleGoalSubmit(input);
   };
 
   const handleGoalSubmit = async (input: GoalInput) => {
@@ -252,8 +275,13 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // If in portfolio mode, render standalone PortfolioPage full layout
+  if (currentStep === 'portfolio') {
+    return <PortfolioPage onOpenApp={() => setCurrentStep('landing')} />;
+  }
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#F9F8F6] text-[#241E2B] font-sans flex flex-col selection:bg-[#C85A32] selection:text-white">
       {/* Header Navbar */}
       <Navbar
         currentStep={currentStep}
@@ -271,9 +299,12 @@ export default function App() {
       />
 
       {/* Main Content View Switcher */}
-      <main className="flex-1 w-full max-w-6xl mx-auto">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4">
         {currentStep === 'landing' && (
-          <LandingPage onStartGoal={handleStartGoal} />
+          <LandingPage 
+            onStartGoal={handleStartGoal} 
+            onStartGoalWithTemplate={handleStartGoalWithTemplate}
+          />
         )}
 
         {currentStep === 'wizard' && (
@@ -338,14 +369,16 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-8 text-center text-xs text-slate-500 mt-12">
+      <footer className="bg-white border-t border-[#E5DFDA] py-8 text-center text-xs text-[#766F82] mt-16">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-800">AdımAI</span>
+            <span className="font-bold text-[#241E2B]">AdımAI</span>
             <span>— Hedefini Yaz. Gerçekçi Yolunu Gör.</span>
           </div>
-          <div className="flex items-center gap-4 text-slate-600">
-            <span>Sade İnsan Tasarımı</span>
+          <div className="flex items-center gap-4 text-[#766F82]">
+            <button onClick={() => setCurrentStep('portfolio')} className="hover:text-[#C85A32] font-bold">
+              Case Study / Portföy
+            </button>
             <span>•</span>
             <span>Gemini AI Entegre</span>
           </div>

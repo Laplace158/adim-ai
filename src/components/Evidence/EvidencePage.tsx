@@ -66,7 +66,7 @@ Bu proje, **AdımAI** kişisel hedef rehberi eşliğinde 7 günlük planlı çal
           <Award className="w-4 h-4 text-emerald-600 mr-1.5" />
           Hedef Kanıtı & Portföy Kartı
         </Badge>
-        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#241E2B] tracking-tight">
           Başarınızı Kanıtlayın
         </h2>
         <p className="text-sm text-slate-600 max-w-xl mx-auto">

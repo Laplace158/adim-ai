@@ -57,7 +57,7 @@ export const DiagnosticTestView: React.FC<DiagnosticTestViewProps> = ({
           <BrainCircuit className="w-3.5 h-3.5 mr-1 text-[#C85A32]" />
           Seviye ve Tanı Testi
         </Badge>
-        <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#241E2B] tracking-tight">
           Başlangıç Seviyenizi Ölçelim
         </h2>
         <p className="text-sm text-slate-600">

@@ -7,33 +7,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        terracotta: {
-          50: '#FDF6F2',
-          100: '#F9ECE6',
-          200: '#F2D5C8',
-          500: '#C85A32',
-          600: '#B04A26',
-          700: '#8E381A',
-          900: '#5C220E',
+        paper: {
+          DEFAULT: '#F9F8F6',
+          2: '#F3F0EC',
+        },
+        ink: '#241E2B',
+        muted: '#766F82',
+        line: '#E5DFDA',
+        orange: {
+          DEFAULT: '#E06438',
+          deep: '#C85A32',
+          soft: '#F6E7DF',
         },
         indigo: {
-          50: '#F3F4F8',
-          100: '#E4E6F0',
-          500: '#3B4274',
-          600: '#2E3460',
-          700: '#22274A',
-          900: '#151830',
+          DEFAULT: '#1E2338',
+          2: '#272E49',
+          board: '#181C2E',
         },
-        warm: {
-          bg: '#FBF9F6',
-          card: '#FFFFFF',
-          border: '#EFE8E1',
-          subtle: '#F4ECE4',
-        }
+        mint: '#A4E8C2',
+        'white-tint': '#FCFCFB',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
       }
     },
   },

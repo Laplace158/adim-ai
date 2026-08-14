@@ -70,18 +70,21 @@ export const GoalWizard: React.FC<GoalWizardProps> = ({ onSubmitGoal, isLoading 
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-6 px-4 space-y-6">
+    <div className="max-w-2xl mx-auto py-8 sm:py-12 px-4 space-y-6">
+      {/* Editorial Header */}
       <div className="text-center space-y-2">
-        <Badge variant="blue">Adım 1 / 2 — Hedef Tanımlama</Badge>
-        <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
-          Ne başarmak istiyorsun?
+        <span className="px-3 py-1 rounded-full bg-[#C85A32]/10 border border-[#C85A32]/30 text-[#C85A32] text-xs font-bold uppercase tracking-wider inline-block">
+          ADIMAI PLAN SİHİRBAZI
+        </span>
+        <h2 className="font-serif text-4xl sm:text-5xl font-normal text-[#241E2B] tracking-tight">
+          Hedef Yol Haritanızı Oluşturun
         </h2>
-        <p className="text-sm text-slate-600">
-          Hedefini özgürce yaz. Süre ve günlük görevlerini otomatik olarak hesaplayacağız.
+        <p className="text-sm text-[#766F82]">
+          Doğal cümlenizi yazın, yapay zeka saniyeler içinde 7 günlük eylem planınızı çıkarsın.
         </p>
       </div>
 
-      <Card className="border-slate-200 shadow-sm">
+      <Card className="p-6 sm:p-8 space-y-6 border-[#E5DFDA] bg-white rounded-2xl shadow-sm">
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Category Selector */}
           <div>

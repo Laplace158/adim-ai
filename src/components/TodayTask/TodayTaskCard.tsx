@@ -67,7 +67,7 @@ export const TodayTaskCard: React.FC<TodayTaskCardProps> = ({
               <Badge variant={isCompleted ? 'emerald' : 'terracotta'} className="mb-2 font-semibold">
                 {task.taskType === 'coding' ? 'Yazılım Görevi' : task.taskType === 'exam_quiz' ? 'Sınav & Test' : 'Öğrenme & Pratik'}
               </Badge>
-              <h2 className="text-2xl font-bold text-slate-900 tracking-tight">{task.title}</h2>
+              <h2 className="font-serif text-3xl font-normal text-[#241E2B] tracking-tight">{task.title}</h2>
             </div>
             <div className="text-right shrink-0">
               <span className="text-[11px] text-stone-400 block font-medium">Zorluk Seviyesi</span>
